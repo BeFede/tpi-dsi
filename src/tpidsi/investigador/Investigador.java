@@ -5,6 +5,7 @@
  */
 package tpidsi.investigador;
 
+import tpidsi.grupoinvestigacion.*;
 import tpidsi.titulos.*;
 
 /**
@@ -70,7 +71,20 @@ public class Investigador {
         this.tituloObtenido = tituloObtenido;
     }
     
+    public CentroDeInvestigacion obtenerCentroDeInvestigacion(){
+        return null;
+    }
     
+    public Facultad obtenerFacultad(){
+        return null;
+    }
     
+    public GrupodeInvestigacion obtenerGrupodeInvestigacion(){
+        return null;
+    }
+    
+    public Universidad obtenerUniversidad(){
+        return null;
+    }
     
 }
