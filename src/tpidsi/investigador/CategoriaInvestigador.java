@@ -10,5 +10,22 @@ package tpidsi.investigador;
  * @author filardo
  */
 public class CategoriaInvestigador {
+    private String nombre;
+
+    public CategoriaInvestigador(String nombre) {
+        this.nombre = nombre;
+    }
+
+    
+    
+    
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     
 }

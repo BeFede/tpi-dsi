@@ -21,6 +21,21 @@ public class TrabajoDeInvestigacion {
     private Autor autor;
     private EdicionSimposio edicionSimposio;
     
+    
+    //Aca en vez de pasar los String pasaria objetos de Evaluador y de Chair...
+   
+    /*
+        public AsignacionEvaluador asignarEvaluador(Evaluador evaluadorAsignado, Chair chair){
+        AsignacionEvaluador asignacion = null;
+        if(this.ultimoEstado.getEstado() instanceof Pendiente){
+            asignacion = this.ultimoEstado.getEstado().asignarEvaluador(evaluadorAsignado, chair);
+        }
+        return asignacion;
+    }
+    */
+    
+    
+    
     public AsignacionEvaluador asignarEvaluador(String evaluadorAsignado, String chair){
         AsignacionEvaluador asignacion = null;
         if(this.ultimoEstado.getEstado() instanceof Pendiente){

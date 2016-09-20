@@ -14,6 +14,21 @@ public class AsignacionEvaluador {
     private String evaluadorAsignado;
     private String chair;
     
+    
+    /*
+    
+    private Evaluador evaluadorAsignado;
+    private Chair chair;
+     
+    public AsignacionEvaluador(Evaluador evaluadorAsignado, Chair chair){
+        this.fechaAsignacion = new Date();
+        this.evaluadorAsignado = evaluadorAsignado;
+        this.chair = chair;
+    }
+    
+    */
+    
+    
     public AsignacionEvaluador(String evaluadorAsignado, String chair){
         this.fechaAsignacion = new Date();
         this.evaluadorAsignado = evaluadorAsignado;

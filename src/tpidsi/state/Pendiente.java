@@ -20,6 +20,14 @@ public class Pendiente extends Estado{
         super.setDescripcion("");
     }
     
+    /*
+    public AsignacionEvaluador asignarEvaluador(Evaluador evaluadorAsignado, Chair chair){
+        AsignacionEvaluador ev = new AsignacionEvaluador(evaluadorAsignado, chair);
+        return ev;
+    }
+    */
+    
+    
     @Override
     public AsignacionEvaluador asignarEvaluador(String evaluadorAsignado, String chair){
         AsignacionEvaluador ev = new AsignacionEvaluador(evaluadorAsignado, chair);
