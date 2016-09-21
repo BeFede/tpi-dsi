@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package tpidsi.trabajoinvestigacion;
+import tpidsi.investigador.Chair;
+import tpidsi.investigador.Evaluador;
 import tpidsi.state.*;
 
 
@@ -12,12 +14,13 @@ import tpidsi.state.*;
  * @author Genaro F
  */
 public abstract class Estado {
-
+    
+    private int id;
     private String ambito;
     private String descripcion;
     private String nombre;
 
-    public AsignacionEvaluador asignarEvaluador(String evaluadorAsignado, String chair){return null;};
+    public AsignacionEvaluador asignarEvaluador(Evaluador evaluadorAsignado, Chair chair){return null;};
 
     public Cancelado cancelar() {
         Cancelado sta = new Cancelado();
@@ -84,5 +87,15 @@ public abstract class Estado {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
 
 }

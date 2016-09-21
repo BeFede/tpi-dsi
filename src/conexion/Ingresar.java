@@ -13,7 +13,7 @@ import tpidsi.titulos.*;
  *
  * @author Genaro F
  */
-public class Operaciones {
+public class Ingresar {
 
     private TipoTitulo getTipoTitulo(int idtipo) {
         TipoTitulo tipt = null;
@@ -32,6 +32,7 @@ public class Operaciones {
                 String nombre = rstipt.getString("nombre");
                 tipt = new TipoTitulo(nombre);
             }
+            conexion.close();
         } catch (SQLException e) {
             System.out.println("Error al crear el tipo de titulo: " + e.getMessage());
         }
@@ -58,6 +59,7 @@ public class Operaciones {
                 TipoTitulo tiptmp = getTipoTitulo(idtipo);
                 tit = new Titulo(nombre, tiptmp);
             }
+            conexion.close();
         } catch (SQLException e) {
             System.out.println("Error al crear el titulo: " + e.getMessage());
         }
@@ -94,7 +96,7 @@ public class Operaciones {
                 }
 
             }
-
+            conexion.close();
         } catch (SQLException e) {
             System.out.println("Error al cargar array de titulos obtenidos: " + e.getMessage());
         }
@@ -118,7 +120,7 @@ public class Operaciones {
                 String nombre = rscate.getString("nombre");
                 cate = new CategoriaInvestigador(nombre);
             }
-
+            conexion.close();
         } catch (SQLException e) {
             System.out.println("Erro al cargar categoria: " + e.getMessage());
         }
@@ -152,9 +154,10 @@ public class Operaciones {
                 TituloObtenido[] tituloObtenido = getTituloObtenido(idinvestigador);
                 usr = new Investigador(nombre, apellido, nuevoU, categoriaInvestigador, tituloObtenido);
             }
+            conexion.close();
 
         } catch (SQLException e) {
-            System.out.println("Error al crear investigador: "+e.getMessage());
+            System.out.println("Error al crear investigador: " + e.getMessage());
         }
         return usr;
     }
@@ -180,11 +183,13 @@ public class Operaciones {
                 usr = getInvestigador(id);
 
             }
+            conexion.close();
 
         } catch (SQLException e) {
-            System.out.println("Error al ingresar: "+e.getMessage());
+            System.out.println("Error al ingresar: " + e.getMessage());
         }
 
         return usr;
     }
+    
 }

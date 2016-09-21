@@ -10,5 +10,22 @@ package tpidsi.grupoinvestigacion;
  * @author Genaro F
  */
 public class Facultad {
+    private String nombre;
+    private Universidad universidad;
+
+    public Facultad(String nombre, Universidad universidad) {
+        this.nombre = nombre;
+        this.universidad = universidad;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Universidad getUniversidad() {
+        return universidad;
+    }
+    
+    
     
 }

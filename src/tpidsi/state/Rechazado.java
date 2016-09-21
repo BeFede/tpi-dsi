@@ -5,6 +5,7 @@
  */
 package tpidsi.state;
 
+import conexion.OpEstados;
 import tpidsi.trabajoinvestigacion.Estado;
 
 /**
@@ -12,11 +13,12 @@ import tpidsi.trabajoinvestigacion.Estado;
  * @author Genaro F
  */
 public class Rechazado extends Estado{
-    
+    private int id = 9;
     public Rechazado(){
         super();
-        super.setNombre("Rechazado");
+        super.setId(9);
+        super.setNombre(OpEstados.getNombreEstado(super.getId()));
         super.setAmbito("Trabajo de Investigacion");
-        super.setDescripcion("");
+        super.setDescripcion(OpEstados.getDescripcionEstado(super.getId()));
     }
 }

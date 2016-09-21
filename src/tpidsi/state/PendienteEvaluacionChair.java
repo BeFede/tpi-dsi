@@ -5,6 +5,7 @@
  */
 package tpidsi.state;
 
+import conexion.OpEstados;
 import tpidsi.trabajoinvestigacion.Estado;
 
 /**
@@ -12,12 +13,12 @@ import tpidsi.trabajoinvestigacion.Estado;
  * @author Genaro F
  */
 public class PendienteEvaluacionChair extends Estado{
-    
     public PendienteEvaluacionChair(){
-        super();
-        super.setNombre("Pendiente Evaluacion Chair");
+         super();
+        super.setId(6);
+        super.setNombre(OpEstados.getNombreEstado(super.getId()));
         super.setAmbito("Trabajo de Investigacion");
-        super.setDescripcion("");
+        super.setDescripcion(OpEstados.getDescripcionEstado(super.getId()));
     }
     
 }

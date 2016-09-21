@@ -5,6 +5,9 @@
  */
 package tpidsi.state;
 
+import conexion.OpEstados;
+import tpidsi.investigador.Chair;
+import tpidsi.investigador.Evaluador;
 import tpidsi.trabajoinvestigacion.AsignacionEvaluador;
 import tpidsi.trabajoinvestigacion.Estado;
 
@@ -14,10 +17,11 @@ import tpidsi.trabajoinvestigacion.Estado;
  */
 public class Pendiente extends Estado{
     public Pendiente(){
-        super();
-        super.setNombre("Pendiente");
+         super();
+        super.setId(5);
+        super.setNombre(OpEstados.getNombreEstado(super.getId()));
         super.setAmbito("Trabajo de Investigacion");
-        super.setDescripcion("");
+        super.setDescripcion(OpEstados.getDescripcionEstado(super.getId()));
     }
     
     /*
@@ -29,7 +33,7 @@ public class Pendiente extends Estado{
     
     
     @Override
-    public AsignacionEvaluador asignarEvaluador(String evaluadorAsignado, String chair){
+    public AsignacionEvaluador asignarEvaluador(Evaluador evaluadorAsignado, Chair chair){
         AsignacionEvaluador ev = new AsignacionEvaluador(evaluadorAsignado, chair);
         return ev;
     }

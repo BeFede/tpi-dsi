@@ -22,6 +22,7 @@ import java.sql.*;
              
              if(conexion != null && !conexion.isClosed()) conexion.close();             
              conexion = DriverManager.getConnection("jdbc:sqlite:"+file);
+             conexion.setAutoCommit(false);
          } catch (SQLException e) {
              System.out.println("Error con sql");
          } catch(ClassNotFoundException e){

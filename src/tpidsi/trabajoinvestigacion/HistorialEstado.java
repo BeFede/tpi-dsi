@@ -5,6 +5,7 @@
  */
 package tpidsi.trabajoinvestigacion;
 
+import conexion.OpHistorialEstados;
 import java.util.Date;
 
 /**
@@ -21,6 +22,11 @@ public class HistorialEstado {
         this.fecha = new Date();
     }
 
+    public boolean guardarHistorial(int idtrabajo){
+        OpHistorialEstados ohe = new OpHistorialEstados();
+        boolean guardo = ohe.guardarHistorial(this,idtrabajo);
+        return guardo;
+    }
     public Date getFecha() {
         return fecha;
     }

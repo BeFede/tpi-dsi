@@ -5,6 +5,8 @@
  */
 package tpidsi.trabajoinvestigacion;
 
+import tpidsi.investigador.Chair;
+import tpidsi.investigador.Evaluador;
 import tpidsi.simposio.EdicionSimposio;
 import tpidsi.state.Pendiente;
 
@@ -13,6 +15,7 @@ import tpidsi.state.Pendiente;
  * @author Genaro F
  */
 public class TrabajoDeInvestigacion {
+    private int id;
     private int nroOrden;
     private String resumen, titulo, palabrasClave;
     private HistorialEstado historialEstado;
@@ -33,10 +36,18 @@ public class TrabajoDeInvestigacion {
         return asignacion;
     }
     */
+
+    public TrabajoDeInvestigacion(int id, String titulo, HistorialEstado ultimoEstado, EdicionSimposio edicionSimposio) {
+        this.id = id;
+        this.titulo = titulo;
+        this.ultimoEstado = ultimoEstado;
+        this.edicionSimposio = edicionSimposio;
+    }
     
     
     
-    public AsignacionEvaluador asignarEvaluador(String evaluadorAsignado, String chair){
+    
+    public AsignacionEvaluador asignarEvaluador(Evaluador evaluadorAsignado, Chair chair){
         AsignacionEvaluador asignacion = null;
         if(this.ultimoEstado.getEstado() instanceof Pendiente){
             asignacion = this.ultimoEstado.getEstado().asignarEvaluador(evaluadorAsignado, chair);

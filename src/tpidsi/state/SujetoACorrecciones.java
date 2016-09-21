@@ -5,6 +5,7 @@
  */
 package tpidsi.state;
 
+import conexion.OpEstados;
 import tpidsi.trabajoinvestigacion.Estado;
 
 /**
@@ -12,10 +13,12 @@ import tpidsi.trabajoinvestigacion.Estado;
  * @author Genaro F
  */
 public class SujetoACorrecciones extends Estado{
+    private int id = 10;
     public SujetoACorrecciones(){
-        super();
-        super.setNombre("Sujeto a Correcciones");
+         super();
+        super.setId(10);
+        super.setNombre(OpEstados.getNombreEstado(super.getId()));
         super.setAmbito("Trabajo de Investigacion");
-        super.setDescripcion("");
+        super.setDescripcion(OpEstados.getDescripcionEstado(super.getId()));
     }
 }

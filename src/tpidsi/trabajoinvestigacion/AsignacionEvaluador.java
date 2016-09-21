@@ -5,14 +5,16 @@
  */
 package tpidsi.trabajoinvestigacion;
 import java.util.Date;
+import tpidsi.investigador.Chair;
+import tpidsi.investigador.Evaluador;
 /**
  *
  * @author Genaro F
  */
 public class AsignacionEvaluador {
     private Date fechaAsignacion;
-    private String evaluadorAsignado;
-    private String chair;
+    private Evaluador evaluadorAsignado;
+    private Chair chair;
     
     
     /*
@@ -29,7 +31,7 @@ public class AsignacionEvaluador {
     */
     
     
-    public AsignacionEvaluador(String evaluadorAsignado, String chair){
+    public AsignacionEvaluador(Evaluador evaluadorAsignado, Chair chair){
         this.fechaAsignacion = new Date();
         this.evaluadorAsignado = evaluadorAsignado;
         this.chair = chair;
@@ -39,11 +41,11 @@ public class AsignacionEvaluador {
         return fechaAsignacion;
     }
 
-    public String getEvaluadorAsignado() {
+    public Evaluador getEvaluadorAsignado() {
         return evaluadorAsignado;
     }
 
-    public String getChair() {
+    public Chair getChair() {
         return chair;
     }
     

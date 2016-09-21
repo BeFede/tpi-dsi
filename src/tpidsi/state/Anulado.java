@@ -5,6 +5,7 @@
  */
 package tpidsi.state;
 
+import conexion.OpEstados;
 import tpidsi.trabajoinvestigacion.Estado;
 
 /**
@@ -16,9 +17,10 @@ import tpidsi.trabajoinvestigacion.Estado;
 public class Anulado extends Estado{
     
     public Anulado(){
-        super();
-        super.setNombre("Anulado");
+      super();
+        super.setId(2);
+        super.setNombre(OpEstados.getNombreEstado(super.getId()));
         super.setAmbito("Trabajo de Investigacion");
-        super.setDescripcion("");
+        super.setDescripcion(OpEstados.getDescripcionEstado(super.getId()));
     }
 }

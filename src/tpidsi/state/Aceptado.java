@@ -5,6 +5,7 @@
  */
 package tpidsi.state;
 
+import conexion.OpEstados;
 import tpidsi.trabajoinvestigacion.Estado;
 
 /**
@@ -13,11 +14,13 @@ import tpidsi.trabajoinvestigacion.Estado;
  */
 public class Aceptado extends Estado{
     
+    
     public Aceptado(){
         super();
-        super.setNombre("Aceptado");
+        super.setId(1);
+        super.setNombre(OpEstados.getNombreEstado(super.getId()));
         super.setAmbito("Trabajo de Investigacion");
-        super.setDescripcion("");
+        super.setDescripcion(OpEstados.getDescripcionEstado(super.getId()));
     }
     
 }

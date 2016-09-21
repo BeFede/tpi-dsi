@@ -11,4 +11,21 @@ package tpidsi.grupoinvestigacion;
  */
 public class CentroDeInvestigacion {
     
+    private String nombre;
+    private Facultad facultad;
+
+    public CentroDeInvestigacion(String nombre, Facultad facultad) {
+        this.nombre = nombre;
+        this.facultad = facultad;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Facultad getFacultad() {
+        return facultad;
+    }
+    
+    
 }

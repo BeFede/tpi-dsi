@@ -5,7 +5,7 @@
  */
 package tpidsi.investigador;
 
-import conexion.Operaciones;
+import conexion.Ingresar;
 
 
 
@@ -30,7 +30,7 @@ public class Sesion {
     public static void main(String[] args) {
         Investigador inv = null;
         String usr = "Investigador1", password="p4ssw0rd";
-        Operaciones op = new Operaciones();
+        Ingresar op = new Ingresar();
         
         inv = op.ingresar(usr, password);
         if(inv == null) System.out.println("Error de usuario o contraseña");

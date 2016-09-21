@@ -15,11 +15,15 @@ public class EdicionSimposio {
     
     private ArrayList<Evaluador> evaluadores;
     private ArrayList<Chair> chairs;
+    private String nombre;
+    private String fecha;
     
-    public EdicionSimposio()
+    public EdicionSimposio(String nombre, String fecha)
     {
         evaluadores = new ArrayList();
         chairs = new ArrayList();
+        this.nombre = nombre;
+        this.fecha = fecha;
     }
 
     public ArrayList<Evaluador> obtenerDatosEvaluadores() {
