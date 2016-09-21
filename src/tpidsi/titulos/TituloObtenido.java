@@ -12,9 +12,11 @@ package tpidsi.titulos;
 public class TituloObtenido {
 
     private Titulo titulo;
+    private String fechaobtencion;
 
-    public TituloObtenido(Titulo titulo) {
+    public TituloObtenido(Titulo titulo, String fechaobtencion) {
         this.titulo = titulo;
+        this.fechaobtencion = fechaobtencion;
     }
 
     public Titulo getTitulo() {

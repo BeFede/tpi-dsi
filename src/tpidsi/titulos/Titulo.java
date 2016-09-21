@@ -11,9 +11,12 @@ package tpidsi.titulos;
  */
 public class Titulo {
     
+    private String nombre;
     private TipoTitulo tipoTitulo;
 
-    public Titulo(TipoTitulo tipoTitulo) {
+    
+    public Titulo(String nombre, TipoTitulo tipoTitulo) {
+        this.nombre = nombre;
         this.tipoTitulo = tipoTitulo;
     }
 

@@ -18,12 +18,12 @@ public class Investigador {
     private String apellido;
     private Usuario usuario;
     private CategoriaInvestigador categoriaInvestigador;
-    private TituloObtenido tituloObtenido;
+    private TituloObtenido[] tituloObtenido;
 
     public Investigador() {
     }
 
-    public Investigador(String nombre, String apellido, Usuario usuario, CategoriaInvestigador categoriaInvestigador, TituloObtenido tituloObtenido) {
+    public Investigador(String nombre, String apellido, Usuario usuario, CategoriaInvestigador categoriaInvestigador, TituloObtenido[] tituloObtenido) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.usuario = usuario;
@@ -63,11 +63,11 @@ public class Investigador {
         this.categoriaInvestigador = categoriaInvestigador;
     }
 
-    public TituloObtenido getTituloObtenido() {
+    public TituloObtenido[] getTituloObtenido() {
         return tituloObtenido;
     }
 
-    public void setTituloObtenido(TituloObtenido tituloObtenido) {
+    public void setTituloObtenido(TituloObtenido[] tituloObtenido) {
         this.tituloObtenido = tituloObtenido;
     }
     

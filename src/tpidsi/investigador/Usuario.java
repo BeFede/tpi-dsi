@@ -13,6 +13,22 @@ public class Usuario {
     
     /*
     Ya veo qué meter acá
+    
+    
     */
+    private int idinvestigador;
+
+    public Usuario(int id) {
+        this.idinvestigador = id;
+    }
+
+    public int getId() {
+        return idinvestigador;
+    }
+
+    public void setId(int id) {
+        this.idinvestigador = id;
+    }
+    
     
 }
