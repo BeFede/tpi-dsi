@@ -6,6 +6,11 @@
 package tpidsi.investigador;
 
 import java.util.ArrayList;
+import tpidsi.grupoinvestigacion.CentroDeInvestigacion;
+import tpidsi.grupoinvestigacion.Facultad;
+import tpidsi.grupoinvestigacion.GrupodeInvestigacion;
+import tpidsi.grupoinvestigacion.Universidad;
+import tpidsi.titulos.TipoTitulo;
 import tpidsi.titulos.TituloObtenido;
 
 /**
@@ -20,21 +25,50 @@ public class Evaluador {
         this.investigador = investigador;
     }
 
-    public String obtenerCategoria() {
-        return investigador.getCategoriaInvestigador().getNombre();
+    public CategoriaInvestigador obtenerCategoria() {
+        return investigador.getCategoriaInvestigador();
     }
 
-    //Esta implementación va a cambiar cuando el Investigador tenga mas de un titulo, es decir cuando se implemente
-    //con una lista o algo asi. Por el momento la dejo asi para hacer uso de ella, pero la voy a cambiar y va a devolver
-    //un aarray list con todos los tipos de titulo del investgador
-    public String obtenerTiposTitulos() {
-        TituloObtenido[] to = investigador.getTituloObtenido();
-        for (int i = 0; i < to.length; i++) {
-            //Esta retornando solo el primero o null si no existe titulo obtenido
-            return to[i].getTitulo().getTipoTitulo().getNombre();
-        }
-        return null;
-
+    public String obtenerNombre()
+    {
+        return investigador.getNombre();
+    }
+    
+    public String obtenerApellido()
+    {
+        return investigador.getApellido();
+    }
+    
+    public GrupodeInvestigacion obtenerGrupodeInvestigacion()
+    {
+        return investigador.obtenerGrupodeInvestigacion();
+    }
+    
+    public CentroDeInvestigacion obtenerCentroDeInvestigacion()
+    {
+        return investigador.obtenerCentroDeInvestigacion();
+    }
+    
+    public Facultad obtenerFacultad()
+    {
+        return investigador.obtenerFacultad();
+    }
+    
+    
+    public Universidad obtenerUniversidad()
+    {
+        return investigador.obtenerUniversidad();
+    }
+    
+    
+  
+    public TipoTitulo[] obtenerTiposTitulos() {
+        return investigador.obtenerTipoTitulos();
+    }
+    
+    public String getDatos()
+    {
+        return investigador.toString();
     }
 
 }

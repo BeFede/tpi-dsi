@@ -25,17 +25,7 @@ public class TrabajoDeInvestigacion {
     private EdicionSimposio edicionSimposio;
     
     
-    //Aca en vez de pasar los String pasaria objetos de Evaluador y de Chair...
-   
-    /*
-        public AsignacionEvaluador asignarEvaluador(Evaluador evaluadorAsignado, Chair chair){
-        AsignacionEvaluador asignacion = null;
-        if(this.ultimoEstado.getEstado() instanceof Pendiente){
-            asignacion = this.ultimoEstado.getEstado().asignarEvaluador(evaluadorAsignado, chair);
-        }
-        return asignacion;
-    }
-    */
+  
 
     public TrabajoDeInvestigacion(int id, String titulo, HistorialEstado ultimoEstado, EdicionSimposio edicionSimposio) {
         this.id = id;

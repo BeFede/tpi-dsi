@@ -9,15 +9,6 @@ package tpidsi.investigador;
  *
  * @author fedeb
  */
-class CategoriaInvestigador {
-    private String nombre;
-
-    public CategoriaInvestigador() {
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-    
+class GrupoInvestigacion {
     
 }

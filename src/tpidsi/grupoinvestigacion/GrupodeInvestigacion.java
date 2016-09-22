@@ -11,19 +11,29 @@ package tpidsi.grupoinvestigacion;
  */
 public class GrupodeInvestigacion {
     private String nombre;
-    private CentroDeInvestigacion centrodeinvestigacion;
+    private CentroDeInvestigacion centroDeInvestigacion;
 
     public GrupodeInvestigacion(String nombre, CentroDeInvestigacion centrodeinvestigacion) {
         this.nombre = nombre;
-        this.centrodeinvestigacion = centrodeinvestigacion;
+        this.centroDeInvestigacion = centrodeinvestigacion;
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public CentroDeInvestigacion getCentrodeinvestigacion() {
-        return centrodeinvestigacion;
+    public CentroDeInvestigacion obtenerCentrodeinvestigacion() {
+        return centroDeInvestigacion;
+    }
+    
+    public Facultad obtenerFacultad()
+    {
+        return centroDeInvestigacion.obtenerFacultad();
+    }
+    
+    public Universidad obtenerUniversidad()
+    {
+        return centroDeInvestigacion.obtenerUniversidad();
     }
     
     

@@ -11,18 +11,21 @@ package tpidsi.grupoinvestigacion;
  */
 public class Facultad {
     private String nombre;
-    private Universidad universidad;
+    private Universidad universidad; // ->La relacion es al revés. La verdad no se bien como implementarlo.. 
+    //mañana pregunto en clases, por el momento me limito a hacerlo como está en el diagrama y pasando por parametros
+    //los datos que necesito
 
-    public Facultad(String nombre, Universidad universidad) {
+    public Facultad(String nombre,Universidad u) {
         this.nombre = nombre;
-        this.universidad = universidad;
+        this.universidad = u;
+        
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public Universidad getUniversidad() {
+    public Universidad obtenerUniversidad() {
         return universidad;
     }
     

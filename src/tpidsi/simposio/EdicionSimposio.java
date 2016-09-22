@@ -47,15 +47,14 @@ public class EdicionSimposio {
     
     //paso por parámetros el evaluador y el chair. Se puede implementar si las demas clases lo implementan igual
     // Ver como lo vamos a hacer
-    /*
+    
     public void asignarEvaluador(Evaluador e,Chair ch, TrabajoDeInvestigacion ti)
     {
         ti.asignarEvaluador(e,ch);
     
     }
-    */
     
-    //Métodos que faltan... actualizarEstadoTI (Creo que no hace falta, ya que este método ha sido reemplazado por el patrón)
-    //buscarDatosAutores ()
+    
+    
     
 }

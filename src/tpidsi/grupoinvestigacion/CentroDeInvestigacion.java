@@ -23,8 +23,13 @@ public class CentroDeInvestigacion {
         return nombre;
     }
 
-    public Facultad getFacultad() {
+    public Facultad obtenerFacultad() {
         return facultad;
+    }
+    
+    public Universidad obtenerUniversidad()
+    {
+        return facultad.obtenerUniversidad();
     }
     
     

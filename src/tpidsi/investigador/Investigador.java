@@ -6,6 +6,7 @@
 package tpidsi.investigador;
 
 import conexion.OpInvestigador;
+import java.util.ArrayList;
 import tpidsi.grupoinvestigacion.*;
 import tpidsi.titulos.*;
 
@@ -77,11 +78,11 @@ public class Investigador {
 
     public CentroDeInvestigacion obtenerCentroDeInvestigacion() {
         
-        return grupodeinvestigacion.getCentrodeinvestigacion();
+        return grupodeinvestigacion.obtenerCentrodeinvestigacion();
     }
 
     public Facultad obtenerFacultad() {
-        return grupodeinvestigacion.getCentrodeinvestigacion().getFacultad();
+        return grupodeinvestigacion.obtenerFacultad();
     }
 
     public GrupodeInvestigacion obtenerGrupodeInvestigacion() {
@@ -90,7 +91,24 @@ public class Investigador {
     }
 
     public Universidad obtenerUniversidad() {
-        return grupodeinvestigacion.getCentrodeinvestigacion().getFacultad().getUniversidad();
+        return grupodeinvestigacion.obtenerUniversidad();
     }
 
+   public TipoTitulo[] obtenerTipoTitulos()
+   {
+       TipoTitulo[] tt = new TipoTitulo[this.getTituloObtenido().length];
+       for (int i = 0; i < this.getTituloObtenido().length; i++) {
+           tt[i] = this.getTituloObtenido()[i].getTipoTitulo();
+       }
+       return tt;
+   }
+
+    @Override
+    public String toString() {
+        return "Nombre=" + nombre + ", Apellido=" + apellido 
+                + ", Categoria=" + categoriaInvestigador.getNombre() ;
+    }
+    
+   
+   
 }
