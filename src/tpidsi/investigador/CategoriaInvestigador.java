@@ -9,10 +9,11 @@ package tpidsi.investigador;
  *
  * @author fedeb
  */
-class CategoriaInvestigador {
+public class CategoriaInvestigador {
     private String nombre;
 
-    public CategoriaInvestigador() {
+    public CategoriaInvestigador(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getNombre() {
