@@ -96,13 +96,13 @@ public class PantallaGestionTIChair extends JFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(rbt_RegistrarPubliacion, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(rtb_AnularTI, javax.swing.GroupLayout.Alignment.LEADING)))))
-                .addContainerGap(345, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btn_aceptar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_cancelar)
-                .addGap(186, 186, 186))
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +125,7 @@ public class PantallaGestionTIChair extends JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_aceptar)
                     .addComponent(btn_cancelar))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -148,7 +148,7 @@ public class PantallaGestionTIChair extends JFrame {
         else 
         {
             //Si el radio boton no esta seleccionado y cliclea el boton aceptar muestra mensaje de advertencia
-            JOptionPane.showMessageDialog(null, "Selesccione una opción");       
+            JOptionPane.showMessageDialog(null, "Seleccione una opción");       
         }
     }//GEN-LAST:event_btn_aceptarActionPerformed
 
