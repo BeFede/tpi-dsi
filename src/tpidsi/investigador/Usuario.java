@@ -11,11 +11,6 @@ package tpidsi.investigador;
  */
 public class Usuario {
     
-    /*
-    Ya veo qué meter acá
-    
-    
-    */
     private int idinvestigador;
 
     public Usuario(int id) {

@@ -30,7 +30,7 @@ public class OpSimposio {
             rs = ps.executeQuery();
             
             if(rs.next()){
-                eds= new EdicionSimposio(rs.getString("nombre"),rs.getString("fecha"));
+                eds= new EdicionSimposio(rs.getString("nombre"),rs.getString("fecha"), id);
             }
             
         } catch (SQLException e) {
@@ -39,4 +39,53 @@ public class OpSimposio {
         
         return eds;
     }
+    
+    static public boolean agregarChair(int id_simposio, int id_chair){
+        boolean guardo = true;
+
+        Conectar op = new Conectar();
+        Connection conexion = op.getConection();
+
+        String qcat = "INSER INTO chairxedicionsimposio (simposio, chair)"
+                + " VALUES simposio=? AND chair=? ";
+        PreparedStatement ps;
+
+        try {
+            ps = conexion.prepareStatement(qcat);
+            ps.setInt(1, id_simposio);
+            ps.setInt(2, id_chair);
+            ps.executeUpdate();
+            conexion.commit();
+
+            conexion.close();
+        } catch (SQLException e) {
+            guardo = false;
+        }
+        return guardo;
+    }
+    
+    static public boolean agregarEvaluador(int id_simposio, int id_evaluador){
+        boolean guardo = true;
+
+        Conectar op = new Conectar();
+        Connection conexion = op.getConection();
+
+        String qcat = "INSER INTO evaluadorxedicionsimposio (simposio, evaluador)"
+                + " VALUES simposio=? AND evaluador=? ";
+        PreparedStatement ps;
+
+        try {
+            ps = conexion.prepareStatement(qcat);
+            ps.setInt(1, id_simposio);
+            ps.setInt(2, id_evaluador);
+            ps.executeUpdate();
+            conexion.commit();
+
+            conexion.close();
+        } catch (SQLException e) {
+            guardo = false;
+        }
+        return guardo;
+    }
+        
 }

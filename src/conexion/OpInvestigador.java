@@ -10,14 +10,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import tpidsi.grupoinvestigacion.*;
+import tpidsi.investigador.Chair;
 
 /**
  *
  * @author Genaro F
  */
 public class OpInvestigador {
-    
-    private Universidad buscarUniversidad(int uni){
+
+    private Universidad buscarUniversidad(int uni) {
         Universidad univ = null;
         Conectar op = new Conectar();
         Connection conexion = op.getConection();
@@ -40,8 +41,8 @@ public class OpInvestigador {
         }
         return univ;
     }
-    
-    private Facultad buscarFacultad(int facu){
+
+    private Facultad buscarFacultad(int facu) {
         Facultad facul = null;
         Conectar op = new Conectar();
         Connection conexion = op.getConection();
@@ -56,7 +57,7 @@ public class OpInvestigador {
 
             if (rs3.next()) {
                 String nombre = rs3.getString("nombre");
-                int idf= rs3.getInt("universidad");
+                int idf = rs3.getInt("universidad");
                 facul = new Facultad(nombre, buscarUniversidad(idf));
 
             }
@@ -64,7 +65,7 @@ public class OpInvestigador {
 
         }
         return facul;
-        
+
     }
 
     private CentroDeInvestigacion buscarCentro(int centro) {
@@ -82,7 +83,7 @@ public class OpInvestigador {
 
             if (rs2.next()) {
                 String nombre = rs2.getString("nombre");
-                int idf= rs2.getInt("facultad");
+                int idf = rs2.getInt("facultad");
                 cent = new CentroDeInvestigacion(nombre, buscarFacultad(idf));
 
             }
@@ -132,12 +133,36 @@ public class OpInvestigador {
 
             if (rs.next()) {
                 int idgr = rs.getInt("grupoinvestigacion");
+                gdi = buscarGrupo(idgr);
 
             }
         } catch (SQLException e) {
 
         }
         return gdi;
+    }
+
+    public boolean esChair(int id_investigador) {
+        boolean rtn = false;
+        Conectar op = new Conectar();
+        Connection conexion = op.getConection();
+
+        String q = "SELECT id FROM chair WHERE id_investigador=?";
+        PreparedStatement ps;
+        ResultSet rs;
+        try {
+            ps = conexion.prepareStatement(q);
+            ps.setInt(1, id_investigador);
+            rs = ps.executeQuery();
+            
+            if(rs.next()){
+                rtn = true;
+            }
+
+        } catch (SQLException e) {
+
+        }
+        return rtn;
     }
 
 }

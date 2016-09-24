@@ -20,13 +20,19 @@ import tpidsi.titulos.TituloObtenido;
 public class Evaluador {
 
     private Investigador investigador;
+    private int id;
 
-    public Evaluador(Investigador investigador) {
+    public Evaluador(Investigador investigador, int id_evaluador) {
         this.investigador = investigador;
+        this.id = id_evaluador;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public CategoriaInvestigador obtenerCategoria() {
-        return investigador.getCategoriaInvestigador();
+        return investigador.obtenerCategoria();
     }
 
     public String obtenerNombre()

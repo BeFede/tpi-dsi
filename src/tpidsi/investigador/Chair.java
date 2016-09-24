@@ -8,10 +8,12 @@ package tpidsi.investigador;
 
 public class Chair {
     private Investigador investigador;
+    private int id;
     
-    public Chair(Investigador i)
+    public Chair(Investigador i, int idChair)
     {
-        investigador = i;
+        this.investigador = i;
+        this.id = idChair;
     }
     
     
@@ -20,7 +22,15 @@ public class Chair {
     public boolean esChairLogueado(){
         
         //if (investigador.getUsuario().buscarChair()!= null) return true;
+        /*
+        Que hace?
+        */
         
         return false;
     }
+
+    public int getId() {
+        return id;
+    }
+
 }

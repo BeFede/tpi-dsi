@@ -16,6 +16,7 @@ import tpidsi.titulos.*;
  */
 public class Investigador {
 
+    OpInvestigador oi;
     private String nombre;
     private String apellido;
     private Usuario usuario;
@@ -32,7 +33,7 @@ public class Investigador {
         this.usuario = usuario;
         this.categoriaInvestigador = categoriaInvestigador;
         this.tituloObtenido = tituloObtenido;
-        OpInvestigador oi = new OpInvestigador();
+        this.oi = new OpInvestigador();
         this.grupodeinvestigacion = oi.getGrupoInvestigacion(this.usuario.getId());
     }
 
@@ -60,7 +61,7 @@ public class Investigador {
         this.usuario = usuario;
     }
 
-    public CategoriaInvestigador getCategoriaInvestigador() {
+    public CategoriaInvestigador obtenerCategoria() {
         return categoriaInvestigador;
     }
 
@@ -101,6 +102,11 @@ public class Investigador {
            tt[i] = this.getTituloObtenido()[i].getTipoTitulo();
        }
        return tt;
+   }
+   
+   public boolean esChair(){
+       boolean es = oi.esChair(this.usuario.getId());
+       return es;
    }
 
     @Override

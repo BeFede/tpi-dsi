@@ -7,27 +7,30 @@ package tpidsi.investigador;
 
 import conexion.Ingresar;
 
-
-
 /**
  *
  * @author filardo
  */
 public class Sesion {
-    
-    /*
-    Ya veo qué meter acá
-    
-    Esta clase deberia de tener visibilidad predeterminada para no ser accesible
-    desde fuera del paquete (y no poder generar una sesion sin autenticarse).
-    
-    La operacion "ingresar()" de la clase Operaciones hace la comparacion, en la bd
-    y retorna un objeto Investigador para setear a la sesion.
-    Usuario creado en al bd:
-    Investigador1:p4ssw0rd
-    */
-    
-    public static void main(String[] args) {
+
+    /**
+     * Comprueba que exista el usuario y la contraseña sea correcta en la 
+     * base de datos. Si es logueado con exito, retorna el objeto Investigador,
+     * de lo contrario retorna null.
+     * @param user
+     * @param password
+     * @return Referencia a un Investigador logueado
+     */
+    public Investigador ingresar(String user, String password) {
+        //Investigador1:p4ssw0rd
+        Investigador inv;
+        Ingresar op = new Ingresar();
+
+        inv = op.ingresar(user, password);
+        return inv;
+    }
+
+    /*public static void main(String[] args) {
         Investigador inv = null;
         String usr = "Investigador1", password="p4ssw0rd";
         Ingresar op = new Ingresar();
@@ -37,5 +40,5 @@ public class Sesion {
         else{
             System.out.println("Usuario "+inv.getNombre()+" logueado con exito!");
         }
-    }
+    }*/
 }
