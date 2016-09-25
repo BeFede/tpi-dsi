@@ -24,6 +24,12 @@ public class Autor {
         return this.investigador.getApellido();
     }
 
+    public String getDatos(){
+        return "Nombre: " + getNombre() + ", Apellido: " + getApellido() +"\n";
+    }
+    
+    
+    
     public Investigador getInvestigador() {
         return investigador;
     }

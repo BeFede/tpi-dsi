@@ -5,6 +5,7 @@
  */
 package tpidsi.trabajoinvestigacion;
 
+import java.util.ArrayList;
 import tpidsi.investigador.Chair;
 import tpidsi.investigador.Evaluador;
 import tpidsi.simposio.EdicionSimposio;
@@ -21,7 +22,7 @@ public class TrabajoDeInvestigacion {
     private HistorialEstado historialEstado;
     private HistorialEstado ultimoEstado;
     private AsignacionEvaluador asignacionEvaluador;
-    private Autor autor;
+    private ArrayList<Autor> autores;
     private EdicionSimposio edicionSimposio;
     
     
@@ -59,8 +60,8 @@ public class TrabajoDeInvestigacion {
         return nroOrden;
     }
 
-    public Autor getAutor() {
-        return autor;
+    public ArrayList<Autor> getAutores() {
+        return autores;
     }
     
     

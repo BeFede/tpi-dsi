@@ -31,6 +31,11 @@ public class EdicionSimposio {
         return evaluadores;
     }
 
+    public ArrayList<Evaluador> obtenerEvaluadoresAsignados(){
+        return evaluadores;
+    }
+    
+    //Este metodo debe devolver la edicion simposio del chair logueado... En la semana lo implemento. No me gusta la signatura que tiene
     public ArrayList<Chair> conocerChairs() {
         return chairs;
     }
@@ -51,6 +56,18 @@ public class EdicionSimposio {
         ti.asignarEvaluador(e, ch);
 
     }
+    
+    
+    public String buscarDatoAutores(TrabajoDeInvestigacion ti)
+    {
+        String autores = "";
+        for (int i = 0; i < ti.getAutores().size(); i++) {
+            autores += ti.getAutores().get(i).getDatos();
+        }
+        return autores;
+    }
+    
+    //public String buscarDatosEvaluadores() invoca al getDatos de Evaluador.. Falta implementar
     
     /*
     Buscar datos de autores: Que hace? Hay que buscar tooodos los autores de cualquier trabajo que
