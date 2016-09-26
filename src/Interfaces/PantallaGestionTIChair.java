@@ -10,12 +10,15 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import tpidsi.investigador.Sesion;
 
 /**
  *
  * @author gimena
  */
 public class PantallaGestionTIChair extends JFrame {
+    private Sesion sesion;
+    private Login login;
 
     /**
      * Creates new form PantallaGestionTIChair
@@ -24,6 +27,10 @@ public class PantallaGestionTIChair extends JFrame {
         initComponents();
     }
 
+    void setSesion(Sesion s, Login l){
+        this.sesion = s;
+        this.login = l;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,6 +51,7 @@ public class PantallaGestionTIChair extends JFrame {
         btn_cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gestión de Trabajos");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Gestión de Trabajos de Investigación para Chair");
@@ -140,7 +148,8 @@ public class PantallaGestionTIChair extends JFrame {
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         // TODO add your handling code here:
        
-        hide();
+        this.setVisible(false);
+        login.setVisible(true);
         dispose(); //Cierra Ventana 
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
@@ -150,9 +159,9 @@ public class PantallaGestionTIChair extends JFrame {
         { 
             // Si el radio boton esta selecionado y cliclea el boton aceptar carga la pantalla 
             PantallaAsignarEvaluadoresTI pantalla= new PantallaAsignarEvaluadoresTI();
-            pantalla.show();
-            GestorAsignarEvaluadores ges = new GestorAsignarEvaluadores();
-            ges.asignarEvaluadoresATI();
+            pantalla.setVisible(true);
+            this.setVisible(false);
+            pantalla.setGestorTI(this);
         }
         else 
         {

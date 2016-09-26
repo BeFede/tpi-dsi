@@ -7,6 +7,7 @@ package Interfaces;
 
 import gestores.GestorAsignarEvaluadores;
 import java.util.HashSet;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,11 +16,18 @@ import javax.swing.JOptionPane;
  */
 public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
 
+    private GestorAsignarEvaluadores ges;
+    private PantallaGestionTIChair gti;
     /**
      * Creates new form PantallaAsignarEvaluadoresTI
      */
     public PantallaAsignarEvaluadoresTI() {
         initComponents();
+        ges = new GestorAsignarEvaluadores();
+    }
+    
+    void setGestorTI(PantallaGestionTIChair gti){
+        this.gti = gti;
     }
 
     /**
@@ -68,6 +76,7 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
         btn_Confirmar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Asignación Evaluadores");
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -442,53 +451,48 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
 
     private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
         // TODO add your handling code here:
-       JOptionPane.showMessageDialog(null,"Se perderán datos. ¿Esta seguro que desea salir?");
+        JOptionPane.showMessageDialog(null, "Se perderán datos. ¿Esta seguro que desea salir?");
         {
-            hide();
-            dispose();
+            this.setVisible(false);
+            this.gti.setVisible(true);
+            this.dispose();
         }
         //Cierra ventana y vuelve a la ventana anterior
     }//GEN-LAST:event_btn_CancelarActionPerformed
     private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
-        if(pnl_paso2.isShowing())
-        {
-            pnl_paso1.show(true);
+        if (pnl_paso2.isShowing()) {
+            pnl_paso1.setVisible(true);
             btn_Atras.setEnabled(false);
             btn_siguiente.setEnabled(true);
         }
-        if(pnl_paso3.isShowing())
-        {
-            pnl_paso2.show(true);
+        if (pnl_paso3.isShowing()) {
+            pnl_paso2.setVisible(true);
             btn_siguiente.setEnabled(true);
             btn_Atras.setEnabled(true);
         }
-        if(pnl_paso4.isShowing())
-        {
-            pnl_paso3.show(true);
-             btn_siguiente.setEnabled(true);
+        if (pnl_paso4.isShowing()) {
+            pnl_paso3.setVisible(true);
+            btn_siguiente.setEnabled(true);
             btn_Atras.setEnabled(true);
         }
-        
+
     }//GEN-LAST:event_btn_AtrasActionPerformed
 
     private void btn_siguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_siguienteActionPerformed
         // TODO add your handling code here:
-       if(pnl_paso1.isShowing())
-        {
-            pnl_paso2.show(true);
+        if (pnl_paso1.isShowing()) {
+            pnl_paso2.setVisible(true);
             btn_Atras.setEnabled(true);
             btn_siguiente.setEnabled(true);
         }
-        if(pnl_paso2.isShowing())
-        {
-            pnl_paso3.show(true);
+        if (pnl_paso2.isShowing()) {
+            pnl_paso3.setVisible(true);
             btn_siguiente.setEnabled(true);
             btn_Atras.setEnabled(true);
         }
-        if(pnl_paso3.isShowing())
-        {
-            pnl_paso4.show(true);
-             btn_siguiente.setEnabled(false);
+        if (pnl_paso3.isShowing()) {
+            pnl_paso4.setVisible(true);
+            btn_siguiente.setEnabled(false);
             btn_Atras.setEnabled(true);
         }
     }//GEN-LAST:event_btn_siguienteActionPerformed
@@ -499,20 +503,17 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
 
     private void TabbedPanePasosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabbedPanePasosMouseClicked
         // TODO add your handling code here:
-        if(pnl_paso1.isShowing())
-        {
+        if (pnl_paso1.isShowing()) {
             btn_Atras.setEnabled(false);
             btn_siguiente.setEnabled(true);
         }
-        if(pnl_paso2.isShowing() || pnl_paso3.isShowing())
-        {
+        if (pnl_paso2.isShowing() || pnl_paso3.isShowing()) {
             btn_siguiente.setEnabled(true);
             btn_Atras.setEnabled(true);
         }
-       
-        if(pnl_paso4.isShowing())
-        {
-             btn_siguiente.setEnabled(false);
+
+        if (pnl_paso4.isShowing()) {
+            btn_siguiente.setEnabled(false);
             btn_Atras.setEnabled(true);
         }
     }//GEN-LAST:event_TabbedPanePasosMouseClicked
@@ -558,31 +559,28 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PantallaAsignarEvaluadoresTI().setVisible(true);
-               
+
             }
         });
     }
-    
+
     // FALTAN METODOS
-     public void mostrarNomYApeChair()
-     {
-         GestorAsignarEvaluadores ges = new GestorAsignarEvaluadores();
-         lbl_Chair.setText("Chair: "+ ges.asignarEvaluadoresATI());
-         lbl_simposio.setText("Nombre Edición de SImposio: "+ges.buscarEdicionSimposioChair().getNombre());
-     }
-    
-     public void mostrarTIPendientes()
-     {
-         
-     }
+    public void mostrarNomYApeChair() {
+        lbl_Chair.setText("Chair: " + ges.asignarEvaluadoresATI());
+        lbl_simposio.setText("Nombre Edición de SImposio: " + ges.buscarEdicionSimposioChair().getNombre());
+    }
+
+    public void mostrarTIPendientes() {
+
+    }
     /*   
         mostrarDatosAutores()
         mostrarEvaluadores()
         solicitarSeleccionarTrabajosInvestigacion()
         mostrarEvaluadoresDisponiblesPorTI()
         mostrarCantTIPorEvaluador()
-    */
-     
+     */
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabbedPanePasos;
