@@ -23,11 +23,11 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
      */
     public PantallaAsignarEvaluadoresTI() {
         initComponents();
-        ges = new GestorAsignarEvaluadores();
     }
     
     void setGestorTI(PantallaGestionTIChair gti){
         this.gti = gti;
+        ges = new GestorAsignarEvaluadores(this.gti.getSesion());
     }
 
     /**

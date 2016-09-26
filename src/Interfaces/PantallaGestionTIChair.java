@@ -31,6 +31,10 @@ public class PantallaGestionTIChair extends JFrame {
         this.sesion = s;
         this.login = l;
     }
+    
+    Sesion getSesion(){
+        return this.sesion;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

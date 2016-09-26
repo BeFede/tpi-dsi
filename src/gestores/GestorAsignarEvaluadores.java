@@ -39,11 +39,9 @@ public class GestorAsignarEvaluadores {
     //asignados. De la forma [idTrabajo][idEvaluador]. De esta manera
     //es posible asociar un trabajo a varios evaluadores.
 
-    public GestorAsignarEvaluadores() {
-        Sesion s = new Sesion();
-        if(s.ingresar("Investigador1", "p4ssw0rd")){
-            this.sesion = s;
-        }
+    public GestorAsignarEvaluadores(Sesion s) {
+
+        this.sesion = s;
         this.op = new OpGestor();
     }
 
@@ -55,8 +53,8 @@ public class GestorAsignarEvaluadores {
     public String asignarEvaluadoresATI() {
         String nom = "";
         chairLogueado = buscarChairLogueado(sesion);
-        if(this.chairLogueado != null){
-            nom = this.chairLogueado.getInvestigador().getApellido() + ", "+this.chairLogueado.getInvestigador().getNombre();
+        if (this.chairLogueado != null) {
+            nom = this.chairLogueado.getInvestigador().getApellido() + ", " + this.chairLogueado.getInvestigador().getNombre();
         }
         return nom;
     }
@@ -97,9 +95,8 @@ public class GestorAsignarEvaluadores {
                 Evaluador[] tmpEv = mapaEvaluadoresPorTI.get(trS);
                 if (validarCantYCategoriaEvaluadorPorTI(tmpEv)) {
                     obtenerFechaYHoraActual();
-                    
-                    for (Evaluador ev : tmpEv)
-                    {
+
+                    for (Evaluador ev : tmpEv) {
                         asignarEvaluadoresATrabajo(ev, chairLogueado, trS);
                     }
                     /*
