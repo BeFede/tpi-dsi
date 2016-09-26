@@ -14,11 +14,11 @@ import java.util.HashMap;
 import tpidsi.grupoinvestigacion.Facultad;
 import tpidsi.investigador.Chair;
 import tpidsi.investigador.Evaluador;
+import tpidsi.investigador.Investigador;
 import tpidsi.investigador.Sesion;
+import tpidsi.investigador.Usuario;
 import tpidsi.simposio.EdicionSimposio;
-import tpidsi.state.PendientePrimeraEvaluacion;
 import tpidsi.trabajoinvestigacion.Autor;
-import tpidsi.trabajoinvestigacion.Estado;
 import tpidsi.trabajoinvestigacion.TrabajoDeInvestigacion;
 
 /**
@@ -39,7 +39,9 @@ public class GestorAsignarEvaluadores {
     //asignados. De la forma [idTrabajo][idEvaluador]. De esta manera
     //es posible asociar un trabajo a varios evaluadores.
 
-    public GestorAsignarEvaluadores(Sesion s) {
+    public GestorAsignarEvaluadores(){}
+    
+    public  GestorAsignarEvaluadores(Sesion s) {
         this.sesion = s;
         this.op = new OpGestor();
     }
@@ -48,7 +50,35 @@ public class GestorAsignarEvaluadores {
     //Los comentario están hecho en base a lo que pude deducir del diagrama de comunicaciones del CU
     //Invoca al método asignarEvaluador del EdicionSimposio pasando el Chair el evaluador y el TI. 
     //Despues de ejecutar esto, debería haberse creado un AsignacionEvaluador y TI debe estar con el nuevo estado
-    public void asignarEvaluadoresATI(Evaluador ev, Chair ch, TrabajoDeInvestigacion ti) {
+    
+    //este metodo seria el que lleve la secuencia si hace falta.
+    public String inicializarVentana()
+    {
+       String nom = "", ape="", nomSimposio= "";
+       sesion.ingresar("Investigador1","p4ssw0rd");
+        GestorAsignarEvaluadores ges= new GestorAsignarEvaluadores(sesion);
+        chairLogueado = ges.buscarChairLogueado(sesion);
+        Investigador in = null;
+        if(in.esChair());
+        {
+            nom = in.getNombre();
+            ape = in.getApellido();
+        }
+        this.buscarEdicionSimposioChair().conocerChairs();
+        if (chairLogueado.esChairLogueado())
+        {
+            nomSimposio= edicionSimposioChair.getNombre();
+        }
+       return nom+ape+nomSimposio ; 
+    }
+    
+    public void asignarEvaluadoresATI()
+    { 
+        String iniciar= this.inicializarVentana();
+        
+    }
+    
+    public void asignarEvaluadoresATrabajo(Evaluador ev, Chair ch, TrabajoDeInvestigacion ti) {
         edicionSimposioChair.asignarEvaluador(ev, ch, ti);
     }
 
@@ -83,12 +113,13 @@ public class GestorAsignarEvaluadores {
                 Evaluador[] tmpEv = mapaEvaluadoresPorTI.get(trS);
                 if (validarCantYCategoriaEvaluadorPorTI(tmpEv)) {
                     obtenerFechaYHoraActual();
-                    for (Evaluador ev : tmpEv) {
+                    /*for (Evaluador ev : tmpEv)
+                    {
                         asignarEvaluadoresATI(ev, chairLogueado, trS);
                     }
                     Estado pendiente = buscarEstadoPendientePrimeraEvaluacion();
                     actualizarEstadoTI(trS, pendiente);
-
+                    */ // lo hace el patron LPM
                 } else {
                     bien = false;
                     break;
@@ -227,12 +258,5 @@ public class GestorAsignarEvaluadores {
         return (Evaluador[]) listaE.toArray();
     }
 
-    public Estado buscarEstadoPendientePrimeraEvaluacion() {
-        return (new PendientePrimeraEvaluacion());
-    }
-
-    public void actualizarEstadoTI(TrabajoDeInvestigacion ti, Estado es) {
-        this.edicionSimposioChair.actualizarEstadoTI(ti, es);
-    }
 
 }

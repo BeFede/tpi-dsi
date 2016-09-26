@@ -47,13 +47,12 @@ public class TrabajoDeInvestigacion {
 
     public AsignacionEvaluador asignarEvaluador(Evaluador evaluadorAsignado, Chair chair) {
         AsignacionEvaluador asignacion = new AsignacionEvaluador(evaluadorAsignado, chair);
-        return asignacion;
 
-        /*if(this.ultimoEstado.getEstado() instanceof Pendiente){
+        if(this.ultimoEstado.getEstado() instanceof Pendiente){
             asignacion = this.ultimoEstado.getEstado().asignarEvaluador(evaluadorAsignado, chair);
         }
         ultimoEstado = new HistorialEstado(new PendientePrimeraEvaluacion());
-         */
+        return asignacion;
     }
 
     public void setUltimoEstado(Estado pendientePrimeraEvaluacion) {

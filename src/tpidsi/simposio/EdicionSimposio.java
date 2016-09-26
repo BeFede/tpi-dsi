@@ -20,6 +20,11 @@ public class EdicionSimposio {
     private String nombre;
     private String fecha;
     private int id;
+    
+    public String getNombre()
+    {
+       return this.nombre;
+    }
 
     public EdicionSimposio(String nombre, String fecha, int id) {
         evaluadores = new ArrayList();
