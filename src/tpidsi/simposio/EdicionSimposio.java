@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import tpidsi.investigador.Chair;
 import tpidsi.investigador.Evaluador;
+import tpidsi.trabajoinvestigacion.Estado;
 import tpidsi.trabajoinvestigacion.TrabajoDeInvestigacion;
 
 public class EdicionSimposio {
@@ -82,4 +83,8 @@ public class EdicionSimposio {
     Buscar datos de autores: Que hace? Hay que buscar tooodos los autores de cualquier trabajo que
     sea presentado en esa edición?
      */
+    
+    public void actualizarEstadoTI(TrabajoDeInvestigacion ti, Estado es){
+        ti.setUltimoEstado(es);
+    }
 }
