@@ -16,17 +16,12 @@ public class Chair {
         this.id = idChair;
     }
     
-    
-    //Tengo que ver como hacer este método
-    //Pero creo que viene mas o menos asi la mano
     public boolean esChairLogueado(){
-        
-        //if (investigador.getUsuario().buscarChair()!= null) return true;
-        /*
-        Que hace?
-        */
-        
-        return false;
+        return investigador.getUsuario().buscarChair()!= null;
+    }
+    
+    public Investigador getInvestigador(){
+        return this.investigador;
     }
 
     public int getId() {

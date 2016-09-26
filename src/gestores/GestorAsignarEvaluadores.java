@@ -39,10 +39,11 @@ public class GestorAsignarEvaluadores {
     //asignados. De la forma [idTrabajo][idEvaluador]. De esta manera
     //es posible asociar un trabajo a varios evaluadores.
 
-    public GestorAsignarEvaluadores(){}
-    
-    public  GestorAsignarEvaluadores(Sesion s) {
-        this.sesion = s;
+    public GestorAsignarEvaluadores() {
+        Sesion s = new Sesion();
+        if(s.ingresar("Investigador1", "p4ssw0rd")){
+            this.sesion = s;
+        }
         this.op = new OpGestor();
     }
 
@@ -50,34 +51,16 @@ public class GestorAsignarEvaluadores {
     //Los comentario están hecho en base a lo que pude deducir del diagrama de comunicaciones del CU
     //Invoca al método asignarEvaluador del EdicionSimposio pasando el Chair el evaluador y el TI. 
     //Despues de ejecutar esto, debería haberse creado un AsignacionEvaluador y TI debe estar con el nuevo estado
-    
     //este metodo seria el que lleve la secuencia si hace falta.
-    public String inicializarVentana()
-    {
-       String nom = "", ape="", nomSimposio= "";
-       sesion.ingresar("Investigador1","p4ssw0rd");
-        GestorAsignarEvaluadores ges= new GestorAsignarEvaluadores(sesion);
-        chairLogueado = ges.buscarChairLogueado(sesion);
-        Investigador in = null;
-        if(in.esChair());
-        {
-            nom = in.getNombre();
-            ape = in.getApellido();
+    public String asignarEvaluadoresATI() {
+        String nom = "";
+        chairLogueado = buscarChairLogueado(sesion);
+        if(this.chairLogueado != null){
+            nom = this.chairLogueado.getInvestigador().getApellido() + ", "+this.chairLogueado.getInvestigador().getNombre();
         }
-        this.buscarEdicionSimposioChair().conocerChairs();
-        if (chairLogueado.esChairLogueado())
-        {
-            nomSimposio= edicionSimposioChair.getNombre();
-        }
-       return nom+ape+nomSimposio ; 
+        return nom;
     }
-    
-    public void asignarEvaluadoresATI()
-    { 
-        String iniciar= this.inicializarVentana();
-        
-    }
-    
+
     public void asignarEvaluadoresATrabajo(Evaluador ev, Chair ch, TrabajoDeInvestigacion ti) {
         edicionSimposioChair.asignarEvaluador(ev, ch, ti);
     }
@@ -101,9 +84,10 @@ public class GestorAsignarEvaluadores {
      * a cantidad y categorias de evaluadores, en caso de que algun TI no pase
      * la validaccion, la funcion se interrumpe y retorna false. Si todo termina
      * sin problemas, retorna true.
-     * @param mapaEvaluadoresPorTI HashMap<TrabajoDeInvestigacion, Evaluador[]> 
-     * @return En caso de que algun TI no pase la validaccion, la funcion se interrumpe y retorna false.
-     * Si todo termina sin problemas, retorna true.
+     *
+     * @param mapaEvaluadoresPorTI HashMap<TrabajoDeInvestigacion, Evaluador[]>
+     * @return En caso de que algun TI no pase la validaccion, la funcion se
+     * interrumpe y retorna false. Si todo termina sin problemas, retorna true.
      */
     public boolean tomarConfirmacion(HashMap<TrabajoDeInvestigacion, Evaluador[]> mapaEvaluadoresPorTI) {
         boolean bien = true;
@@ -113,13 +97,15 @@ public class GestorAsignarEvaluadores {
                 Evaluador[] tmpEv = mapaEvaluadoresPorTI.get(trS);
                 if (validarCantYCategoriaEvaluadorPorTI(tmpEv)) {
                     obtenerFechaYHoraActual();
-                    /*for (Evaluador ev : tmpEv)
+                    
+                    for (Evaluador ev : tmpEv)
                     {
-                        asignarEvaluadoresATI(ev, chairLogueado, trS);
+                        asignarEvaluadoresATrabajo(ev, chairLogueado, trS);
                     }
+                    /*
                     Estado pendiente = buscarEstadoPendientePrimeraEvaluacion();
                     actualizarEstadoTI(trS, pendiente);
-                    */ // lo hace el patron LPM
+                     */ // lo hace el patron 
                 } else {
                     bien = false;
                     break;
@@ -257,6 +243,5 @@ public class GestorAsignarEvaluadores {
         }
         return (Evaluador[]) listaE.toArray();
     }
-
 
 }
