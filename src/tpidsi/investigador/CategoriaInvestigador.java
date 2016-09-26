@@ -9,16 +9,30 @@ package tpidsi.investigador;
  *
  * @author fedeb
  */
-public class CategoriaInvestigador {
+public class CategoriaInvestigador implements Comparable{
+    private int id;
     private String nombre;
 
-    public CategoriaInvestigador(String nombre) {
+    public CategoriaInvestigador(String nombre, int id) {
         this.nombre = nombre;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNombre() {
         return nombre;
     }
+
+    @Override
+    public int compareTo(Object t) {
+        CategoriaInvestigador c = (CategoriaInvestigador) t;
+        return this.nombre.compareTo(c.getNombre());
+    }
+    
+    
     
     
 }

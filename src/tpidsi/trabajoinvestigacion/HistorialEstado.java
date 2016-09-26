@@ -6,7 +6,9 @@
 package tpidsi.trabajoinvestigacion;
 
 import conexion.OpHistorialEstados;
+import java.time.Instant;
 import java.util.Date;
+import tpidsi.state.PendientePrimeraEvaluacion;
 
 /**
  *
@@ -17,8 +19,13 @@ public class HistorialEstado {
     private Date fecha;
     private Estado estado;
 
-    public void setUltimoEstado(Estado pendientePrimeraEvaluacion) {
-        this.estado = pendientePrimeraEvaluacion;
+    public HistorialEstado(Estado s) {
+        this.fecha = Date.from(Instant.now());
+        this.estado = s;
+    }
+
+    public void setUltimoEstado(Estado e) {
+        this.estado = e;
         this.fecha = new Date();
     }
 

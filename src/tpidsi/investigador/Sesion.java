@@ -21,13 +21,25 @@ public class Sesion {
      * @param password
      * @return Referencia a un Investigador logueado
      */
-    public Investigador ingresar(String user, String password) {
+    
+    private Usuario usr;
+    
+    public boolean ingresar(String user, String password) {
         //Investigador1:p4ssw0rd
+        boolean rtn = false;
         Investigador inv;
         Ingresar op = new Ingresar();
 
         inv = op.ingresar(user, password);
-        return inv;
+        if(inv != null){
+            this.usr=inv.getUsuario();
+            rtn = true;
+        }
+        return rtn;
+    }
+    
+    public Chair buscarChair(){
+        return this.usr.buscarChair();
     }
 
     /*public static void main(String[] args) {

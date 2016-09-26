@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package tpidsi.trabajoinvestigacion;
+import java.time.Instant;
 import java.util.Date;
 import tpidsi.investigador.Chair;
 import tpidsi.investigador.Evaluador;
@@ -32,8 +33,20 @@ public class AsignacionEvaluador {
     
     
     public AsignacionEvaluador(Evaluador evaluadorAsignado, Chair chair){
-        this.fechaAsignacion = new Date();
+        setFechaAsignacion();
+        setEvaluadorAsignado(evaluadorAsignado);
+        setChair(chair);
+    }
+
+    public void setFechaAsignacion() {
+        this.fechaAsignacion = Date.from(Instant.now());
+    }
+
+    public void setEvaluadorAsignado(Evaluador evaluadorAsignado) {
         this.evaluadorAsignado = evaluadorAsignado;
+    }
+
+    public void setChair(Chair chair) {
         this.chair = chair;
     }
 

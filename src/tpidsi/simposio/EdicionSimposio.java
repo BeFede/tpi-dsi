@@ -7,6 +7,7 @@ package tpidsi.simposio;
 
 import conexion.OpSimposio;
 import java.util.ArrayList;
+import java.util.Arrays;
 import tpidsi.investigador.Chair;
 import tpidsi.investigador.Evaluador;
 import tpidsi.trabajoinvestigacion.TrabajoDeInvestigacion;
@@ -25,16 +26,22 @@ public class EdicionSimposio {
         this.nombre = nombre;
         this.fecha = fecha;
         this.id = id;
+        configurar();
     }
 
+    private void configurar(){
+        evaluadores.addAll(Arrays.asList(OpSimposio.conocerEvaluadores()));
+        chairs.addAll(Arrays.asList(OpSimposio.conocerChairs()));
+    }
+    
     public ArrayList<Evaluador> obtenerDatosEvaluadores() {
         return evaluadores;
     }
 
-    public ArrayList<Evaluador> obtenerEvaluadoresAsignados(){
+    public ArrayList<Evaluador> obtenerEvaluadoresAsignados() {
         return evaluadores;
     }
-    
+
     //Este metodo debe devolver la edicion simposio del chair logueado... En la semana lo implemento. No me gusta la signatura que tiene
     public ArrayList<Chair> conocerChairs() {
         return chairs;
@@ -54,24 +61,25 @@ public class EdicionSimposio {
     // Ver como lo vamos a hacer
     public void asignarEvaluador(Evaluador e, Chair ch, TrabajoDeInvestigacion ti) {
         ti.asignarEvaluador(e, ch);
-
     }
-    
-    
-    public String buscarDatoAutores(TrabajoDeInvestigacion ti)
-    {
+
+    public String buscarDatosAutores(TrabajoDeInvestigacion ti) {
         String autores = "";
         for (int i = 0; i < ti.getAutores().size(); i++) {
-            autores += ti.getAutores().get(i).getDatos();
+            autores += ti.getAutores().get(i).getDatos() + "\n";
         }
         return autores;
     }
-    
-    //public String buscarDatosEvaluadores() invoca al getDatos de Evaluador.. Falta implementar
-    
+
+    public String buscarDatosEvaluadores(TrabajoDeInvestigacion ti){
+        String evaluadores = "";
+        for (int i = 0; i < ti.getEvaluadores().size(); i++) {
+            evaluadores += ti.getEvaluadores().get(i).getDatos() + "\n";
+        }
+        return evaluadores;
+    }
     /*
     Buscar datos de autores: Que hace? Hay que buscar tooodos los autores de cualquier trabajo que
     sea presentado en esa edición?
-    */
-
+     */
 }

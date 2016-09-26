@@ -6,9 +6,6 @@
 package tpidsi.state;
 
 import conexion.OpEstados;
-import tpidsi.investigador.Chair;
-import tpidsi.investigador.Evaluador;
-import tpidsi.trabajoinvestigacion.AsignacionEvaluador;
 import tpidsi.trabajoinvestigacion.Estado;
 
 /**
@@ -30,13 +27,5 @@ public class Pendiente extends Estado{
         return ev;
     }
     */
-    
-    
-    @Override
-    public AsignacionEvaluador asignarEvaluador(Evaluador evaluadorAsignado, Chair chair){
-        AsignacionEvaluador ev = new AsignacionEvaluador(evaluadorAsignado, chair);
-        return ev;
-    }
-    
     
 }

@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import tpidsi.investigador.Chair;
+import tpidsi.investigador.Evaluador;
 import tpidsi.simposio.EdicionSimposio;
 
 /**
@@ -17,8 +19,32 @@ import tpidsi.simposio.EdicionSimposio;
  * @author Genaro F
  */
 public class OpSimposio {
-    static public EdicionSimposio buscarSimposio(int id){
-        EdicionSimposio eds=null;
+
+    static public EdicionSimposio buscarSimposioChair(int id_chair) {
+        EdicionSimposio eds1 = null;
+        Conectar conectar = new Conectar();
+        Connection conexion = conectar.getConection();
+        PreparedStatement ps1;
+        ResultSet rs1;
+        String q1 = "SELECT simposio FROM chairxedicionsimposio WHERE chair=?";
+        try {
+            ps1 = conexion.prepareStatement(q1);
+            ps1.setInt(1, id_chair);
+            rs1 = ps1.executeQuery();
+
+            if (rs1.next()) {
+                int idS = rs1.getInt("simposio");
+                eds1 = buscarSimposio(idS);
+            }
+
+        } catch (SQLException e) {
+        }
+
+        return eds1;
+    }
+
+    static public EdicionSimposio buscarSimposio(int id_simposio) {
+        EdicionSimposio eds = null;
         Conectar conectar = new Conectar();
         Connection conexion = conectar.getConection();
         PreparedStatement ps;
@@ -26,21 +52,89 @@ public class OpSimposio {
         String q = "SELECT * FROM edicionsimposio WHERE id=?";
         try {
             ps = conexion.prepareStatement(q);
-            ps.setInt(1, id);
+            ps.setInt(1, id_simposio);
             rs = ps.executeQuery();
-            
-            if(rs.next()){
-                eds= new EdicionSimposio(rs.getString("nombre"),rs.getString("fecha"), id);
+
+            if (rs.next()) {
+                eds = new EdicionSimposio(rs.getString("nombre"), rs.getString("fecha"), id_simposio);
             }
-            
+
         } catch (SQLException e) {
         }
-        
-        
+
+        return eds;
+    }
+
+    static public Chair[] conocerChairs() {
+        Chair[] eds = null;
+        Conectar conectar = new Conectar();
+        Connection conexion = conectar.getConection();
+        PreparedStatement ps;
+        ResultSet rs;
+        String q = "SELECT * FROM chair";
+        try {
+            ps = conexion.prepareStatement(q);
+            rs = ps.executeQuery();
+            int idChair, idInvestigador, contador = 0;
+            Chair nC;
+            if (rs.next()) {
+                eds = new Chair[rs.getRow()];
+                idChair = rs.getInt("id");
+                idInvestigador = rs.getInt("id_investigador");
+                nC = new Chair(OpInvestigador.obtenerInvestigador(idInvestigador), idChair);
+                eds[contador] = nC;
+                contador++;
+                while (rs.next()) {
+                    idChair = rs.getInt("id");
+                    idInvestigador = rs.getInt("id_investigador");
+                    nC = new Chair(OpInvestigador.obtenerInvestigador(idInvestigador), idChair);
+                    eds[contador] = nC;
+                    contador++;
+                }
+            }
+
+        } catch (SQLException e) {
+        }
+
         return eds;
     }
     
-    static public boolean agregarChair(int id_simposio, int id_chair){
+    static public Evaluador[] conocerEvaluadores() {
+        Evaluador[] eds = null;
+        Conectar conectar = new Conectar();
+        Connection conexion = conectar.getConection();
+        PreparedStatement ps;
+        ResultSet rs;
+        String q = "SELECT * FROM evaluador";
+        try {
+            ps = conexion.prepareStatement(q);
+            rs = ps.executeQuery();
+            int idChair, idInvestigador, contador = 0;
+            Evaluador nC;
+            if (rs.next()) {
+                eds = new Evaluador[rs.getRow()];
+                idChair = rs.getInt("id");
+                idInvestigador = rs.getInt("id_investigador");
+                nC = new Evaluador(OpInvestigador.obtenerInvestigador(idInvestigador), idChair);
+                eds[contador] = nC;
+                contador++;
+                while (rs.next()) {
+                    idChair = rs.getInt("id");
+                    idInvestigador = rs.getInt("id_investigador");
+                    nC = new Evaluador(OpInvestigador.obtenerInvestigador(idInvestigador), idChair);
+                    eds[contador] = nC;
+                    contador++;
+                }
+            }
+
+        } catch (SQLException e) {
+        }
+
+        return eds;
+    }
+    
+
+    static public boolean agregarChair(int id_simposio, int id_chair) {
         boolean guardo = true;
 
         Conectar op = new Conectar();
@@ -63,8 +157,8 @@ public class OpSimposio {
         }
         return guardo;
     }
-    
-    static public boolean agregarEvaluador(int id_simposio, int id_evaluador){
+
+    static public boolean agregarEvaluador(int id_simposio, int id_evaluador) {
         boolean guardo = true;
 
         Conectar op = new Conectar();
@@ -87,5 +181,5 @@ public class OpSimposio {
         }
         return guardo;
     }
-        
+
 }

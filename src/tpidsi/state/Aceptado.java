@@ -6,6 +6,9 @@
 package tpidsi.state;
 
 import conexion.OpEstados;
+import tpidsi.investigador.Chair;
+import tpidsi.investigador.Evaluador;
+import tpidsi.trabajoinvestigacion.AsignacionEvaluador;
 import tpidsi.trabajoinvestigacion.Estado;
 
 /**

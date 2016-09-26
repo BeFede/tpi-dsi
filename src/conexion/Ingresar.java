@@ -118,7 +118,7 @@ public class Ingresar {
 
             if (rscate.next()) {
                 String nombre = rscate.getString("nombre");
-                cate = new CategoriaInvestigador(nombre);
+                cate = new CategoriaInvestigador(nombre, idcat);
             }
             conexion.close();
         } catch (SQLException e) {
@@ -161,6 +161,42 @@ public class Ingresar {
         }
         return usr;
     }
+    
+    Investigador getInvestigadorPorId(int idInv) {
+        Investigador usr = null;
+        Conectar op = new Conectar();
+        Connection conexion = op.getConection();
+
+        String qgetinv = "SELECT * FROM investigador WHERE id=?";
+        PreparedStatement psgetinv;
+        ResultSet rsgetinv;
+        try {
+            psgetinv = conexion.prepareStatement(qgetinv);
+            psgetinv.setInt(1, idInv);
+            rsgetinv = psgetinv.executeQuery();
+
+            if (rsgetinv.next()) {
+                String nombre = rsgetinv.getString("nombre");
+                String apellido = rsgetinv.getString("apellido");
+                int idcategoria = rsgetinv.getInt("categoriainvestigador");
+                int idinvestigador = rsgetinv.getInt("id");
+                Usuario nuevoU = new Usuario(idinvestigador);
+                /*
+                private CategoriaInvestigador categoriaInvestigador;
+                private TituloObtenido[] tituloObtenido;
+                 */
+                CategoriaInvestigador categoriaInvestigador = getCategoriaInvestigador(idcategoria);
+                TituloObtenido[] tituloObtenido = getTituloObtenido(idinvestigador);
+                usr = new Investigador(nombre, apellido, nuevoU, categoriaInvestigador, tituloObtenido);
+            }
+            conexion.close();
+
+        } catch (SQLException e) {
+            System.out.println("Error al crear investigador: " + e.getMessage());
+        }
+        return usr;
+    }
+    
 
     public Investigador ingresar(String usuario, String password) {
         Investigador usr = null;

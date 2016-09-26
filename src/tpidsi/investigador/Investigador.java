@@ -14,7 +14,7 @@ import tpidsi.titulos.*;
  *
  * @author filardo
  */
-public class Investigador {
+public class Investigador implements Comparable {
 
     OpInvestigador oi;
     private String nombre;
@@ -34,6 +34,12 @@ public class Investigador {
         this.categoriaInvestigador = categoriaInvestigador;
         this.tituloObtenido = tituloObtenido;
         this.oi = new OpInvestigador();
+        configurar();
+
+    }
+
+    private void configurar() {
+        this.usuario.setInv(this);
         this.grupodeinvestigacion = oi.getGrupoInvestigacion(this.usuario.getId());
     }
 
@@ -78,7 +84,7 @@ public class Investigador {
     }
 
     public CentroDeInvestigacion obtenerCentroDeInvestigacion() {
-        
+
         return grupodeinvestigacion.obtenerCentrodeinvestigacion();
     }
 
@@ -87,7 +93,7 @@ public class Investigador {
     }
 
     public GrupodeInvestigacion obtenerGrupodeInvestigacion() {
-        
+
         return grupodeinvestigacion;
     }
 
@@ -95,26 +101,29 @@ public class Investigador {
         return grupodeinvestigacion.obtenerUniversidad();
     }
 
-   public TipoTitulo[] obtenerTipoTitulos()
-   {
-       TipoTitulo[] tt = new TipoTitulo[this.getTituloObtenido().length];
-       for (int i = 0; i < this.getTituloObtenido().length; i++) {
-           tt[i] = this.getTituloObtenido()[i].getTipoTitulo();
-       }
-       return tt;
-   }
-   
-   public boolean esChair(){
-       boolean es = oi.esChair(this.usuario.getId());
-       return es;
-   }
+    public TipoTitulo[] obtenerTipoTitulos() {
+        TipoTitulo[] tt = new TipoTitulo[this.getTituloObtenido().length];
+        for (int i = 0; i < this.getTituloObtenido().length; i++) {
+            tt[i] = this.getTituloObtenido()[i].getTipoTitulo();
+        }
+        return tt;
+    }
+
+    public boolean esChair() {
+        boolean es = oi.esChair(this.usuario.getId());
+        return es;
+    }
 
     @Override
     public String toString() {
-        return "Nombre=" + nombre + ", Apellido=" + apellido 
-                + ", Categoria=" + categoriaInvestigador.getNombre() ;
+        return "Nombre=" + nombre + ", Apellido=" + apellido
+                + ", Categoria=" + categoriaInvestigador.getNombre();
     }
-    
-   
-   
+
+    @Override
+    public int compareTo(Object t) {
+        Investigador t1 = (Investigador) t;
+        return this.apellido.compareTo(t1.getApellido());
+    }
+
 }

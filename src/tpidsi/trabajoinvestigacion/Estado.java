@@ -20,7 +20,10 @@ public abstract class Estado {
     private String descripcion;
     private String nombre;
 
-    public AsignacionEvaluador asignarEvaluador(Evaluador evaluadorAsignado, Chair chair){return null;};
+    public AsignacionEvaluador asignarEvaluador(Evaluador evaluadorAsignado, Chair chair){
+        AsignacionEvaluador ev = new AsignacionEvaluador(evaluadorAsignado, chair);
+        return ev;
+    };
 
     public Cancelado cancelar() {
         Cancelado sta = new Cancelado();

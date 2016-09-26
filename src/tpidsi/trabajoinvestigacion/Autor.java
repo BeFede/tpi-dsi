@@ -12,8 +12,15 @@ import tpidsi.investigador.Investigador;
  *
  * @author Genaro F
  */
-public class Autor {
+public class Autor implements Comparable{
     private Investigador investigador;
+    private int id;
+
+    public Autor(Investigador investigador, int id) {
+        this.investigador = investigador;
+        this.id = id;
+    }
+    
     
 
     public String getNombre() {
@@ -27,8 +34,6 @@ public class Autor {
     public String getDatos(){
         return "Nombre: " + getNombre() + ", Apellido: " + getApellido() +"\n";
     }
-    
-    
     
     public Investigador getInvestigador() {
         return investigador;
@@ -48,5 +53,11 @@ public class Autor {
     
     public Universidad obtenerUniversidad(){
         return this.investigador.obtenerUniversidad();
+    }
+
+    @Override
+    public int compareTo(Object t) {
+        Autor a1 = (Autor) t;
+        return this.investigador.compareTo(a1.getInvestigador());
     }
 }

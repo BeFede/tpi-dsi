@@ -5,17 +5,22 @@
  */
 package tpidsi.trabajoinvestigacion;
 
+import conexion.OpTrabajoInvestigacion;
 import java.util.ArrayList;
+import java.util.Arrays;
 import tpidsi.investigador.Chair;
 import tpidsi.investigador.Evaluador;
 import tpidsi.simposio.EdicionSimposio;
 import tpidsi.state.Pendiente;
+import tpidsi.state.PendientePrimeraEvaluacion;
 
 /**
  *
  * @author Genaro F
  */
 public class TrabajoDeInvestigacion {
+
+    private OpTrabajoInvestigacion op;
     private int id;
     private int nroOrden;
     private String resumen, titulo, palabrasClave;
@@ -23,36 +28,40 @@ public class TrabajoDeInvestigacion {
     private HistorialEstado ultimoEstado;
     private AsignacionEvaluador asignacionEvaluador;
     private ArrayList<Autor> autores;
+    private ArrayList<Evaluador> evaluadores;
     private EdicionSimposio edicionSimposio;
-    
-    
-  
 
     public TrabajoDeInvestigacion(int id, String titulo, HistorialEstado ultimoEstado, EdicionSimposio edicionSimposio) {
         this.id = id;
         this.titulo = titulo;
         this.ultimoEstado = ultimoEstado;
         this.edicionSimposio = edicionSimposio;
+        configurar();
     }
-    
-    
-    
-    
-    public AsignacionEvaluador asignarEvaluador(Evaluador evaluadorAsignado, Chair chair){
-        AsignacionEvaluador asignacion = null;
-        if(this.ultimoEstado.getEstado() instanceof Pendiente){
+
+    private void configurar() {
+        this.op = new OpTrabajoInvestigacion();
+        this.autores.addAll(Arrays.asList(this.op.obtenerAutorTrabajo(this.id)));
+        this.evaluadores.addAll(Arrays.asList(this.op.obtenerEvaluadorTrabajo(this.id)));
+    }
+
+    public AsignacionEvaluador asignarEvaluador(Evaluador evaluadorAsignado, Chair chair) {
+        AsignacionEvaluador asignacion = new AsignacionEvaluador(evaluadorAsignado, chair);
+        return asignacion;
+
+        /*if(this.ultimoEstado.getEstado() instanceof Pendiente){
             asignacion = this.ultimoEstado.getEstado().asignarEvaluador(evaluadorAsignado, chair);
         }
-        return asignacion;
+        ultimoEstado = new HistorialEstado(new PendientePrimeraEvaluacion());
+         */
     }
-    
-    public void setUltimoEstado(Estado pendientePrimeraEvaluacion){
+
+    public void setUltimoEstado(Estado pendientePrimeraEvaluacion) {
         this.historialEstado = this.ultimoEstado;
-        this.ultimoEstado = new HistorialEstado();
-        this.ultimoEstado.setUltimoEstado(pendientePrimeraEvaluacion);
+        this.ultimoEstado = new HistorialEstado(pendientePrimeraEvaluacion);
     }
-        
-    public boolean buscarTIEstadoPendiente(){
+
+    public boolean buscarTIEstadoPendiente() {
         return this.ultimoEstado.getEstado() instanceof Pendiente;
     }
 
@@ -63,6 +72,9 @@ public class TrabajoDeInvestigacion {
     public ArrayList<Autor> getAutores() {
         return autores;
     }
-    
-    
+
+    public ArrayList<Evaluador> getEvaluadores() {
+        return evaluadores;
+    }
+
 }

@@ -17,7 +17,7 @@ import tpidsi.titulos.TituloObtenido;
  *
  * @author fedeb
  */
-public class Evaluador {
+public class Evaluador implements Comparable{
 
     private Investigador investigador;
     private int id;
@@ -25,6 +25,10 @@ public class Evaluador {
     public Evaluador(Investigador investigador, int id_evaluador) {
         this.investigador = investigador;
         this.id = id_evaluador;
+    }
+
+    public Evaluador(int aInt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId() {
@@ -75,6 +79,12 @@ public class Evaluador {
     public String getDatos()
     {
         return investigador.toString();
+    }
+
+    @Override
+    public int compareTo(Object t) {
+        Evaluador e = (Evaluador) t;
+        return this.investigador.obtenerCategoria().compareTo(e.investigador.obtenerCategoria());
     }
 
 }

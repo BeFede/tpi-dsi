@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import tpidsi.grupoinvestigacion.*;
 import tpidsi.investigador.Chair;
+import tpidsi.investigador.Investigador;
 
 /**
  *
@@ -42,7 +43,7 @@ public class OpInvestigador {
         return univ;
     }
 
-    private Facultad buscarFacultad(int facu) {
+    Facultad buscarFacultad(int id_facultad) {
         Facultad facul = null;
         Conectar op = new Conectar();
         Connection conexion = op.getConection();
@@ -52,13 +53,13 @@ public class OpInvestigador {
         ResultSet rs3;
         try {
             ps3 = conexion.prepareStatement(qcat);
-            ps3.setInt(1, facu);
+            ps3.setInt(1, id_facultad);
             rs3 = ps3.executeQuery();
 
             if (rs3.next()) {
                 String nombre = rs3.getString("nombre");
                 int idf = rs3.getInt("universidad");
-                facul = new Facultad(nombre, buscarUniversidad(idf));
+                facul = new Facultad(nombre, buscarUniversidad(idf), id_facultad);
 
             }
         } catch (SQLException e) {
@@ -154,8 +155,8 @@ public class OpInvestigador {
             ps = conexion.prepareStatement(q);
             ps.setInt(1, id_investigador);
             rs = ps.executeQuery();
-            
-            if(rs.next()){
+
+            if (rs.next()) {
                 rtn = true;
             }
 
@@ -163,6 +164,37 @@ public class OpInvestigador {
 
         }
         return rtn;
+    }
+
+    public Chair obtenerChair(int id_investigador) {
+        Chair rtn = null;
+        Conectar op = new Conectar();
+        Connection conexion = op.getConection();
+
+        String q = "SELECT id FROM chair WHERE id_investigador=?";
+        PreparedStatement ps;
+        ResultSet rs;
+        try {
+            ps = conexion.prepareStatement(q);
+            ps.setInt(1, id_investigador);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int idC = rs.getInt("id");
+                rtn = new Chair(obtenerInvestigador(id_investigador), idC);
+            }
+
+        } catch (SQLException e) {
+
+        }
+        return rtn;
+    }
+
+    static public Investigador obtenerInvestigador(int id) {
+        Ingresar in = new Ingresar();
+
+        Investigador e = in.getInvestigadorPorId(id);
+        return e;
     }
 
 }
