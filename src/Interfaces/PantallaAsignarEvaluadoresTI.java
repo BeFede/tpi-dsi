@@ -5,7 +5,9 @@
  */
 package Interfaces;
 
+import gestores.GestorAsignarEvaluadores;
 import java.util.HashSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,10 +32,8 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        lbl_NombreEdicion = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        lbl_Chair = new javax.swing.JLabel();
+        lbl_simposio = new javax.swing.JLabel();
         btn_siguiente = new javax.swing.JButton();
         btn_Atras = new javax.swing.JButton();
         btn_Cancelar = new javax.swing.JButton();
@@ -51,20 +51,21 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbl_TI = new javax.swing.JTable();
-        jLabel9 = new javax.swing.JLabel();
         btn_aceptarTISeleccionedos = new javax.swing.JButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        lista_CantTIPorEvaluador = new javax.swing.JList<>();
         pnl_paso3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        btn_Confirmar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tbl_EvaluadoresDisponibles = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        lista_CantTIPorEvaluador = new javax.swing.JList<>();
+        pnl_paso4 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
         lista_TIyEvaluadores = new javax.swing.JList<>();
-        jLabel11 = new javax.swing.JLabel();
+        btn_Confirmar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -72,17 +73,9 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Asignar Evaluadores a Trabajos de Investigación ");
 
-        jLabel2.setText("Chair: ");
+        lbl_Chair.setText("Chair: ");
 
-        jLabel3.setText("Edición de SImposio: ");
-
-        lbl_NombreEdicion.setBackground(new java.awt.Color(255, 255, 255));
-        lbl_NombreEdicion.setText("//NombreSimposio");
-        lbl_NombreEdicion.setFocusable(false);
-
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("Apellido, Nombre(Logueado)");
-        jTextField1.setFocusable(false);
+        lbl_simposio.setText("Edición de SImposio: ");
 
         btn_siguiente.setText("Siguiente");
         btn_siguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -214,7 +207,7 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        TabbedPanePasos.addTab("Paso 1", pnl_paso1);
+        TabbedPanePasos.addTab("Inicio", pnl_paso1);
 
         jLabel6.setText("Seleccione Trabajos de Investigación");
 
@@ -231,8 +224,6 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tbl_TI);
 
-        jLabel9.setText("Cantidad de Trabajos de Investigacion por Evaluador");
-
         btn_aceptarTISeleccionedos.setText("Aceptar");
         btn_aceptarTISeleccionedos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,59 +231,38 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
             }
         });
 
-        lista_CantTIPorEvaluador.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Evaluador1:  12", "Evaluador2:    5", " " };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane5.setViewportView(lista_CantTIPorEvaluador);
-
         javax.swing.GroupLayout pnl_paso2Layout = new javax.swing.GroupLayout(pnl_paso2);
         pnl_paso2.setLayout(pnl_paso2Layout);
         pnl_paso2Layout.setHorizontalGroup(
             pnl_paso2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_paso2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(pnl_paso2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
                     .addGroup(pnl_paso2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(pnl_paso2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_aceptarTISeleccionedos)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(88, 88, 88)
-                        .addGroup(pnl_paso2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel9)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(157, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jLabel6))
+                    .addGroup(pnl_paso2Layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btn_aceptarTISeleccionedos)))
+                .addContainerGap(301, Short.MAX_VALUE))
         );
         pnl_paso2Layout.setVerticalGroup(
             pnl_paso2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnl_paso2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnl_paso2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnl_paso2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_aceptarTISeleccionedos)
                     .addGroup(pnl_paso2Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(btn_aceptarTISeleccionedos)
-                .addContainerGap())
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        TabbedPanePasos.addTab("Paso 2", pnl_paso2);
+        TabbedPanePasos.addTab("Selección Trabajos", pnl_paso2);
 
         jLabel7.setText("Selecciones para cada Trabajo de Investigación 3 (tres) Evaluadores");
-
-        btn_Confirmar.setText("Confirmar");
-        btn_Confirmar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ConfirmarActionPerformed(evt);
-            }
-        });
 
         jLabel8.setText("Se deberia panel para cada TI. O buscar otra forma.");
 
@@ -311,6 +281,64 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
         ));
         jScrollPane7.setViewportView(tbl_EvaluadoresDisponibles);
 
+        jLabel9.setText("Cantidad de Trabajos de Investigacion por Evaluador");
+
+        lista_CantTIPorEvaluador.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Evaluador1:  12", "Evaluador2:    5", " " };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane5.setViewportView(lista_CantTIPorEvaluador);
+
+        javax.swing.GroupLayout pnl_paso3Layout = new javax.swing.GroupLayout(pnl_paso3);
+        pnl_paso3.setLayout(pnl_paso3Layout);
+        pnl_paso3Layout.setHorizontalGroup(
+            pnl_paso3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_paso3Layout.createSequentialGroup()
+                .addGroup(pnl_paso3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_paso3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel7))
+                    .addGroup(pnl_paso3Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(pnl_paso3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnl_paso3Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addGroup(pnl_paso3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8)))
+                            .addComponent(jLabel10))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addGroup(pnl_paso3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_paso3Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9))
+                .addContainerGap())
+        );
+        pnl_paso3Layout.setVerticalGroup(
+            pnl_paso3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_paso3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addGap(20, 20, 20)
+                .addComponent(jLabel9)
+                .addGap(5, 5, 5)
+                .addGroup(pnl_paso3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnl_paso3Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel8))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+
+        TabbedPanePasos.addTab("Selección Evaluadores", pnl_paso3);
+
+        jLabel11.setText("Evaluadores Seleccionados para cada Trabajo de Investigación");
+
         lista_TIyEvaluadores.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "//nombreTI1: nomYApeEva1,  nomYApeEva2, nomYApeEva3.", "//nombreTI2: nomYApeEva1,  nomYApeEva2, nomYApeEva3.", "//nombreTI3: nomYApeEva1,  nomYApeEva2, nomYApeEva3.", " " };
             public int getSize() { return strings.length; }
@@ -318,64 +346,42 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(lista_TIyEvaluadores);
 
-        jLabel11.setText("Evaluadores Seleccionados para cada Trabajo de Investigación");
+        btn_Confirmar.setText("Confirmar");
+        btn_Confirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ConfirmarActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout pnl_paso3Layout = new javax.swing.GroupLayout(pnl_paso3);
-        pnl_paso3.setLayout(pnl_paso3Layout);
-        pnl_paso3Layout.setHorizontalGroup(
-            pnl_paso3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_paso3Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(pnl_paso3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addGroup(pnl_paso3Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(pnl_paso3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))))
-                .addGroup(pnl_paso3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_paso3Layout.createSequentialGroup()
-                        .addGap(281, 281, 281)
-                        .addComponent(btn_Confirmar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_paso3Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(28, Short.MAX_VALUE))))
-            .addGroup(pnl_paso3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_paso3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel11)
-                .addGap(41, 41, 41))
-        );
-        pnl_paso3Layout.setVerticalGroup(
-            pnl_paso3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnl_paso3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
+        javax.swing.GroupLayout pnl_paso4Layout = new javax.swing.GroupLayout(pnl_paso4);
+        pnl_paso4.setLayout(pnl_paso4Layout);
+        pnl_paso4Layout.setHorizontalGroup(
+            pnl_paso4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_paso4Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel11)
-                .addGap(7, 7, 7)
-                .addGroup(pnl_paso3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnl_paso3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_paso3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl_paso4Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 548, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(btn_Confirmar)
                 .addGap(49, 49, 49))
         );
+        pnl_paso4Layout.setVerticalGroup(
+            pnl_paso4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnl_paso4Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(pnl_paso4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_Confirmar)
+                    .addGroup(pnl_paso4Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
 
-        TabbedPanePasos.addTab("Paso 3", pnl_paso3);
+        TabbedPanePasos.addTab("Finalización", pnl_paso4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -385,10 +391,7 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_NombreEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lbl_simposio))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -398,9 +401,8 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lbl_Chair)
+                                .addGap(178, 178, 178))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btn_Atras, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -414,14 +416,10 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(lbl_NombreEdicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addComponent(lbl_Chair)
+                .addGap(24, 24, 24)
+                .addComponent(lbl_simposio)
                 .addGap(18, 18, 18)
                 .addComponent(TabbedPanePasos, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -429,7 +427,7 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
                     .addComponent(btn_siguiente)
                     .addComponent(btn_Atras)
                     .addComponent(btn_Cancelar))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -444,22 +442,30 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
 
     private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
         // TODO add your handling code here:
-        hide();
-        dispose();
+       JOptionPane.showMessageDialog(null,"Se perderán datos. ¿Esta seguro que desea salir?");
+        {
+            hide();
+            dispose();
+        }
         //Cierra ventana y vuelve a la ventana anterior
     }//GEN-LAST:event_btn_CancelarActionPerformed
-
     private void btn_AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AtrasActionPerformed
         if(pnl_paso2.isShowing())
         {
-            pnl_paso1.show();
+            pnl_paso1.show(true);
             btn_Atras.setEnabled(false);
             btn_siguiente.setEnabled(true);
         }
         if(pnl_paso3.isShowing())
         {
-            pnl_paso2.show();
+            pnl_paso2.show(true);
             btn_siguiente.setEnabled(true);
+            btn_Atras.setEnabled(true);
+        }
+        if(pnl_paso4.isShowing())
+        {
+            pnl_paso3.show(true);
+             btn_siguiente.setEnabled(true);
             btn_Atras.setEnabled(true);
         }
         
@@ -469,14 +475,20 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
         // TODO add your handling code here:
        if(pnl_paso1.isShowing())
         {
-            pnl_paso2.show();
+            pnl_paso2.show(true);
             btn_Atras.setEnabled(true);
             btn_siguiente.setEnabled(true);
         }
         if(pnl_paso2.isShowing())
         {
-            pnl_paso3.show();
-            btn_siguiente.setEnabled(false);
+            pnl_paso3.show(true);
+            btn_siguiente.setEnabled(true);
+            btn_Atras.setEnabled(true);
+        }
+        if(pnl_paso3.isShowing())
+        {
+            pnl_paso4.show(true);
+             btn_siguiente.setEnabled(false);
             btn_Atras.setEnabled(true);
         }
     }//GEN-LAST:event_btn_siguienteActionPerformed
@@ -492,14 +504,15 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
             btn_Atras.setEnabled(false);
             btn_siguiente.setEnabled(true);
         }
-        if(pnl_paso2.isShowing())
+        if(pnl_paso2.isShowing() || pnl_paso3.isShowing())
         {
             btn_siguiente.setEnabled(true);
             btn_Atras.setEnabled(true);
         }
-        if(pnl_paso3.isShowing())
+       
+        if(pnl_paso4.isShowing())
         {
-            btn_siguiente.setEnabled(false);
+             btn_siguiente.setEnabled(false);
             btn_Atras.setEnabled(true);
         }
     }//GEN-LAST:event_TabbedPanePasosMouseClicked
@@ -545,18 +558,32 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new PantallaAsignarEvaluadoresTI().setVisible(true);
+               
             }
         });
     }
+    
     // FALTAN METODOS
-    /*  mostrarNomYApeChair()
-        mostrarTIPendientes()
+     public void mostrarNomYApeChair()
+     {
+         GestorAsignarEvaluadores ges = new GestorAsignarEvaluadores();
+         lbl_Chair.setText("Chair: "+ ges.asignarEvaluadoresATI());
+         lbl_simposio.setText("Nombre Edición de SImposio: "+ges.buscarEdicionSimposioChair().getNombre());
+     }
+    
+     public void mostrarTIPendientes()
+     {
+         
+     }
+    /*   
         mostrarDatosAutores()
         mostrarEvaluadores()
         solicitarSeleccionarTrabajosInvestigacion()
         mostrarEvaluadoresDisponiblesPorTI()
         mostrarCantTIPorEvaluador()
     */
+     
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabbedPanePasos;
     private javax.swing.JButton btn_Ascendente;
@@ -569,8 +596,6 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -583,13 +608,14 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField lbl_NombreEdicion;
+    private javax.swing.JLabel lbl_Chair;
+    private javax.swing.JLabel lbl_simposio;
     private javax.swing.JList<String> lista_CantTIPorEvaluador;
     private javax.swing.JList<String> lista_TIyEvaluadores;
     private javax.swing.JPanel pnl_paso1;
     private javax.swing.JPanel pnl_paso2;
     private javax.swing.JPanel pnl_paso3;
+    private javax.swing.JPanel pnl_paso4;
     private javax.swing.JTable tbl_AutoresPorTI;
     private javax.swing.JTable tbl_Evaluadores;
     private javax.swing.JTable tbl_EvaluadoresDisponibles;

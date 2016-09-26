@@ -92,8 +92,11 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbt_AsignarEvaluadoresTI">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Asignar Evaluadores a Trabajos de Investigaci&#xf2;n "/>
+        <Property name="text" type="java.lang.String" value="Asignar Evaluadores a Trabajos de Investigaci&#xf3;n "/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbt_AsignarEvaluadoresTIActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbt_ModificarAsignacion">
       <Properties>

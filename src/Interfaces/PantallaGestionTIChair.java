@@ -5,6 +5,7 @@
  */
 package Interfaces;
 
+import gestores.GestorAsignarEvaluadores;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -47,7 +48,12 @@ public class PantallaGestionTIChair extends JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Gestión de Trabajos de Investigación para Chair");
 
-        rbt_AsignarEvaluadoresTI.setText("Asignar Evaluadores a Trabajos de Investigaciòn ");
+        rbt_AsignarEvaluadoresTI.setText("Asignar Evaluadores a Trabajos de Investigación ");
+        rbt_AsignarEvaluadoresTI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbt_AsignarEvaluadoresTIActionPerformed(evt);
+            }
+        });
 
         rbt_ModificarAsignacion.setText("Modificar Asignación de Evaluadores a Trabajo de Investigación");
         rbt_ModificarAsignacion.setEnabled(false);
@@ -133,6 +139,7 @@ public class PantallaGestionTIChair extends JFrame {
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         // TODO add your handling code here:
+       
         hide();
         dispose(); //Cierra Ventana 
     }//GEN-LAST:event_btn_cancelarActionPerformed
@@ -144,6 +151,8 @@ public class PantallaGestionTIChair extends JFrame {
             // Si el radio boton esta selecionado y cliclea el boton aceptar carga la pantalla 
             PantallaAsignarEvaluadoresTI pantalla= new PantallaAsignarEvaluadoresTI();
             pantalla.show();
+            GestorAsignarEvaluadores ges = new GestorAsignarEvaluadores();
+            ges.asignarEvaluadoresATI();
         }
         else 
         {
@@ -151,6 +160,10 @@ public class PantallaGestionTIChair extends JFrame {
             JOptionPane.showMessageDialog(null, "Seleccione una opción");       
         }
     }//GEN-LAST:event_btn_aceptarActionPerformed
+
+    private void rbt_AsignarEvaluadoresTIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbt_AsignarEvaluadoresTIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbt_AsignarEvaluadoresTIActionPerformed
 
     /**
      * @param args the command line arguments
