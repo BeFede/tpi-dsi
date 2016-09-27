@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import tpidsi.grupoinvestigacion.Facultad;
 
 /**
@@ -16,8 +17,9 @@ import tpidsi.grupoinvestigacion.Facultad;
  * @author Genaro F
  */
 public class OpUniversidad {
+
     private OpInvestigador op = new OpInvestigador();
-    
+
     public Facultad[] obtenerFacultades() {
         Facultad[] facultades = null;
         Conectar op = new Conectar();
@@ -26,15 +28,20 @@ public class OpUniversidad {
         String qcat = "SELECT id FROM facultad"; //nombre, universidad 
         PreparedStatement ps3;
         ResultSet rs3;
-       int contador = 0, id_f;
+        int contador = 0, id_f;
         try {
             ps3 = conexion.prepareStatement(qcat);
             rs3 = ps3.executeQuery();
-
-            if(rs3.next()) {
-              facultades = new Facultad[rs3.getRow()];
-              id_f = rs3.getInt("id");
-              facultades[contador] = this.op.buscarFacultad(id_f);
+            Conectar cd = new Conectar();
+            Statement s = cd.getConection().createStatement();
+            ResultSet r = s.executeQuery("SELECT COUNT(*) AS rowcount FROM facultad");
+            r.next();
+            int size = r.getInt("rowcount");
+            r.close();
+            if (rs3.next()) {
+                facultades = new Facultad[size];
+                id_f = rs3.getInt("id");
+                facultades[contador] = this.op.buscarFacultad(id_f);
 
             }
         } catch (SQLException e) {
@@ -42,5 +49,5 @@ public class OpUniversidad {
         }
         return facultades;
     }
-    
+
 }

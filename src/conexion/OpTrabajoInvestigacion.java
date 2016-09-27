@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import tpidsi.investigador.Evaluador;
 import tpidsi.investigador.Investigador;
 import tpidsi.simposio.EdicionSimposio;
@@ -110,8 +111,14 @@ public class OpTrabajoInvestigacion {
             rs = ps.executeQuery();
             Evaluador n;
             int contador = 0, id_evaluador;
+            Conectar cd = new Conectar();
+            Statement s = cd.getConection().createStatement();
+            ResultSet r = s.executeQuery("SELECT COUNT(*) AS rowcount FROM evaluadoresxtrabajo");
+            r.next();
+            int size = r.getInt("rowcount");
+            r.close();
             if (rs.next()) {
-                rtn = new Evaluador[rs.getRow()];
+                rtn = new Evaluador[size];
                 id_evaluador = rs.getInt("evaluador");
                 n = new Evaluador(obtenerInvestigadorEvaluador(id_evaluador), id_evaluador);
                 rtn[contador] = n;
@@ -165,8 +172,14 @@ public class OpTrabajoInvestigacion {
             rs = ps.executeQuery();
             Autor n;
             int contador = 0, id_autor;
+            Conectar cd = new Conectar();
+            Statement s = cd.getConection().createStatement();
+            ResultSet r = s.executeQuery("SELECT COUNT(*) AS rowcount FROM autoresxtrabajo");
+            r.next();
+            int size = r.getInt("rowcount");
+            r.close();
             if (rs.next()) {
-                rtn = new Autor[rs.getRow()];
+                rtn = new Autor[size];
                 id_autor = rs.getInt("autor");
                 n = new Autor(obtenerInvestigadorAutor(id_autor), id_autor);
                 rtn[contador] = n;

@@ -55,6 +55,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        txt_usr.setText("Investigador1");
         txt_usr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_usrActionPerformed(evt);
@@ -74,6 +75,8 @@ public class Login extends javax.swing.JFrame {
                 btn_ingresarActionPerformed(evt);
             }
         });
+
+        txt_pass.setText("p4ssw0rd");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

@@ -27,7 +27,7 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
     
     void setGestorTI(PantallaGestionTIChair gti){
         this.gti = gti;
-        ges = new GestorAsignarEvaluadores(this.gti.getSesion());
+        ges = new GestorAsignarEvaluadores(this.gti.getSesion(), this);
     }
 
     /**
@@ -565,9 +565,9 @@ public class PantallaAsignarEvaluadoresTI extends javax.swing.JFrame {
     }
 
     // FALTAN METODOS
-    public void mostrarNomYApeChair() {
-        lbl_Chair.setText("Chair: " + ges.asignarEvaluadoresATI());
-        lbl_simposio.setText("Nombre Edición de SImposio: " + ges.buscarEdicionSimposioChair().getNombre());
+    public void mostrarNomYApeChair(String nombre, String nombreSimposio) {
+        lbl_Chair.setText("Chair: " + nombre);
+        lbl_simposio.setText("Nombre Edición de SImposio: " + nombreSimposio);
     }
 
     public void mostrarTIPendientes() {

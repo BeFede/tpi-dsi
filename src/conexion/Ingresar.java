@@ -80,8 +80,17 @@ public class Ingresar {
             pstitob = conexion.prepareStatement(qtitob);
             pstitob.setInt(1, idinvestigador);
             rstitob = pstitob.executeQuery();
+            
+            Conectar cd = new Conectar();
+            Statement s = cd.getConection().createStatement();
+            ResultSet r = s.executeQuery("SELECT COUNT(*) AS rowcount FROM tituloxinvestigador");
+            r.next();
+            int size = r.getInt("rowcount");
+            r.close();
+
+            
             if (rstitob.next()) {
-                titob = new TituloObtenido[rstitob.getRow()];
+                titob = new TituloObtenido[size];
                 int tit = rstitob.getInt("titulo");
                 String fecha = rstitob.getString("fechaobtencion");
                 TituloObtenido tmp = new TituloObtenido(getTitulo(tit), fecha);
@@ -161,7 +170,7 @@ public class Ingresar {
         }
         return usr;
     }
-    
+
     Investigador getInvestigadorPorId(int idInv) {
         Investigador usr = null;
         Conectar op = new Conectar();
@@ -196,7 +205,6 @@ public class Ingresar {
         }
         return usr;
     }
-    
 
     public Investigador ingresar(String usuario, String password) {
         Investigador usr = null;
@@ -227,5 +235,5 @@ public class Ingresar {
 
         return usr;
     }
-    
+
 }

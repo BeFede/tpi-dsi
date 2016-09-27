@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import tpidsi.investigador.Chair;
 import tpidsi.investigador.Evaluador;
 import tpidsi.simposio.EdicionSimposio;
@@ -77,8 +78,14 @@ public class OpSimposio {
             rs = ps.executeQuery();
             int idChair, idInvestigador, contador = 0;
             Chair nC;
+            Conectar cd = new Conectar();
+            Statement s = cd.getConection().createStatement();
+            ResultSet r = s.executeQuery("SELECT COUNT(*) AS rowcount FROM chair"); 
+            r.next();
+            int size = r.getInt("rowcount");
+            r.close();
             if (rs.next()) {
-                eds = new Chair[rs.getRow()];
+                eds = new Chair[size];
                 idChair = rs.getInt("id");
                 idInvestigador = rs.getInt("id_investigador");
                 nC = new Chair(OpInvestigador.obtenerInvestigador(idInvestigador), idChair);
@@ -98,7 +105,7 @@ public class OpSimposio {
 
         return eds;
     }
-    
+
     static public Evaluador[] conocerEvaluadores() {
         Evaluador[] eds = null;
         Conectar conectar = new Conectar();
@@ -111,8 +118,14 @@ public class OpSimposio {
             rs = ps.executeQuery();
             int idChair, idInvestigador, contador = 0;
             Evaluador nC;
+            Conectar cd = new Conectar();
+            Statement s = cd.getConection().createStatement();
+            ResultSet r = s.executeQuery("SELECT COUNT(*) AS rowcount FROM evaluador");
+            r.next();
+            int size = r.getInt("rowcount");
+            r.close();
             if (rs.next()) {
-                eds = new Evaluador[rs.getRow()];
+                eds = new Evaluador[size];
                 idChair = rs.getInt("id");
                 idInvestigador = rs.getInt("id_investigador");
                 nC = new Evaluador(OpInvestigador.obtenerInvestigador(idInvestigador), idChair);
@@ -132,7 +145,6 @@ public class OpSimposio {
 
         return eds;
     }
-    
 
     static public boolean agregarChair(int id_simposio, int id_chair) {
         boolean guardo = true;

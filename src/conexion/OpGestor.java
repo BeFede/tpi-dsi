@@ -5,7 +5,6 @@
  */
 package conexion;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +12,7 @@ import java.sql.SQLException;
 import tpidsi.investigador.Evaluador;
 import tpidsi.investigador.Investigador;
 import conexion.OpSimposio;
+import java.sql.Statement;
 import tpidsi.grupoinvestigacion.Facultad;
 import tpidsi.investigador.Chair;
 import tpidsi.simposio.EdicionSimposio;
@@ -23,19 +23,19 @@ import tpidsi.trabajoinvestigacion.TrabajoDeInvestigacion;
  * @author Genaro F
  */
 public class OpGestor {
-    
+
     private OpUniversidad opU = new OpUniversidad();
     private OpTrabajoInvestigacion opTI = new OpTrabajoInvestigacion();
-    
-    public Facultad[] obtenerFacultades(){
+
+    public Facultad[] obtenerFacultades() {
         return opU.obtenerFacultades();
     }
-    
-    public TrabajoDeInvestigacion obtenerTrabajoDeInvestigacion(int idTI){
+
+    public TrabajoDeInvestigacion obtenerTrabajoDeInvestigacion(int idTI) {
         return opTI.buscarTrabajoInvestigacion(idTI);
     }
-    
-    public Evaluador obtenerEvaluador(int idEv){
+
+    public Evaluador obtenerEvaluador(int idEv) {
         return opTI.obtenerEvaluador(idEv);
     }
 
@@ -59,8 +59,14 @@ public class OpGestor {
             rs = ps.executeQuery();
             int id_inv, id_ev, contador = 0;
             Evaluador n;
+            Conectar cd = new Conectar();
+            Statement s = cd.getConection().createStatement();
+            ResultSet r = s.executeQuery("SELECT COUNT(*) AS rowcount FROM evaluador");
+            r.next();
+            int size = r.getInt("rowcount");
+            r.close();
             if (rs.next()) {
-                arr = new Evaluador[rs.getRow()];
+                arr = new Evaluador[size];
                 id_inv = rs.getInt("id_investigador");
                 id_ev = rs.getInt("id");
                 n = new Evaluador(obtenerInvestigador(id_inv), id_ev);
@@ -82,12 +88,12 @@ public class OpGestor {
 
         return arr;
     }
-    
-    public Chair[] conocerChairs(){
+
+    public Chair[] conocerChairs() {
         return OpSimposio.conocerChairs();
     }
-    
-    public EdicionSimposio buscarSimposioChair(int idChair){
+
+    public EdicionSimposio buscarSimposioChair(int idChair) {
         return OpSimposio.buscarSimposioChair(idChair);
     }
 

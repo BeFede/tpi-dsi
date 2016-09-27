@@ -5,6 +5,8 @@
  */
 package gestores;
 
+import Interfaces.PantallaAsignarEvaluadoresTI;
+import Interfaces.PantallaGestionTIChair;
 import conexion.OpGestor;
 import java.time.Instant;
 import java.util.Arrays;
@@ -27,6 +29,7 @@ import tpidsi.trabajoinvestigacion.TrabajoDeInvestigacion;
  */
 public class GestorAsignarEvaluadores {
 
+    private PantallaAsignarEvaluadoresTI pantalla;
     private HashMap<Integer, ArrayList<Evaluador>> clasificadosEvaluadores;
     private OpGestor op;
     private Sesion sesion;
@@ -39,10 +42,11 @@ public class GestorAsignarEvaluadores {
     //asignados. De la forma [idTrabajo][idEvaluador]. De esta manera
     //es posible asociar un trabajo a varios evaluadores.
 
-    public GestorAsignarEvaluadores(Sesion s) {
-
+    public GestorAsignarEvaluadores(Sesion s, PantallaAsignarEvaluadoresTI pantalla) {
         this.sesion = s;
+        this.pantalla = pantalla;
         this.op = new OpGestor();
+        asignarEvaluadoresATI();
     }
 
     //Los retornos los pongo todos en void porque no se bien como se va a tratar con la comunicacion con la pantalla
@@ -50,13 +54,13 @@ public class GestorAsignarEvaluadores {
     //Invoca al método asignarEvaluador del EdicionSimposio pasando el Chair el evaluador y el TI. 
     //Despues de ejecutar esto, debería haberse creado un AsignacionEvaluador y TI debe estar con el nuevo estado
     //este metodo seria el que lleve la secuencia si hace falta.
-    public String asignarEvaluadoresATI() {
+    public void asignarEvaluadoresATI() {
         String nom = "";
         chairLogueado = buscarChairLogueado(sesion);
         if (this.chairLogueado != null) {
             nom = this.chairLogueado.getInvestigador().getApellido() + ", " + this.chairLogueado.getInvestigador().getNombre();
         }
-        return nom;
+        this.pantalla.mostrarNomYApeChair(nom, buscarEdicionSimposioChair().getNombre());
     }
 
     public void asignarEvaluadoresATrabajo(Evaluador ev, Chair ch, TrabajoDeInvestigacion ti) {
@@ -118,15 +122,11 @@ public class GestorAsignarEvaluadores {
     } //invoca al "buscarChair" en sesión
 
     public EdicionSimposio buscarEdicionSimposioChair() {
-        Chair[] e = op.conocerChairs();
-        Chair n = buscarChairLogueado(this.sesion);
-        for (Chair ch : e) {
-            if (ch.getId() == n.getId()) {
-                EdicionSimposio simp = op.buscarSimposioChair(ch.getId());
-                this.edicionSimposioChair = simp;
-                break;
-            }
+        if(this.chairLogueado == null){
+            this.chairLogueado = buscarChairLogueado(this.sesion);
         }
+        EdicionSimposio simp = op.buscarSimposioChair(this.chairLogueado.getId());
+        this.edicionSimposioChair = simp;
         return this.edicionSimposioChair;
     } //Invoca al ConocerChairs de edicion simposio, y va a devolver la edicion simposio del chair logueado y asignarla a edicionSimposioChair
 
